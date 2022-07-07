@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/recipesFragment">
+
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.example.spoonacularapp.RecipesFragment"
+        android:label="@string/recipes_fragment_title"
+        tools:layout="@layout/fragment_recipes" />
+    <fragment
+        android:id="@+id/favouriteRecipesFragment"
+        android:name="com.example.spoonacularapp.FavouriteRecipes"
+        android:label="@string/favorite_recipes_fragment_title"
+        tools:layout="@layout/fragment_favourite_recipes" />
+    <fragment
+        android:id="@+id/browsingHistoryFragment"
+        android:name="com.example.spoonacularapp.BrowsingHistory"
+        android:label="@string/browsing_history_fragment_title"
+        tools:layout="@layout/fragment_browsing_history" />
+</navigation>

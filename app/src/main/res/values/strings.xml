@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SpoonacularApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recipes_fragment_title">Recipes</string>
+    <string name="favorite_recipes_fragment_title">Favorites</string>
+    <string name="browsing_history_fragment_title">Browsing History</string>
+    <string name="error_textView">No internet connection.</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus non augue non fringilla.</string>
 </resources>
