@@ -7,4 +7,6 @@
     <string name="browsing_history_fragment_title">Browsing History</string>
     <string name="error_textView">No internet connection.</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus non augue non fringilla.</string>
+    <string name="vegan">Vegan</string>
+    <string name="number_placeholder">100</string>
 </resources>

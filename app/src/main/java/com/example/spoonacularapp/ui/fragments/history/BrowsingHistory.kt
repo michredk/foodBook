@@ -1,21 +1,19 @@
-package com.example.spoonacularapp
+package com.example.spoonacularapp.ui.fragments.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.todkars.shimmer.ShimmerRecyclerView
+import com.example.spoonacularapp.R
 
-class RecipesFragment : Fragment() {
+class BrowsingHistory : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_recipes, container, false)
-        view.findViewById<ShimmerRecyclerView>(R.id.recycler_view).showShimmer()
-        return view
+        return inflater.inflate(R.layout.fragment_browsing_history, container, false)
     }
 }

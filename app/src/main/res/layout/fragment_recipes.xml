@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".RecipesFragment"
+        tools:context=".ui.fragments.recipes.RecipesFragment"
         android:background="@color/colorPrimaryDark">
 
         <com.todkars.shimmer.ShimmerRecyclerView
