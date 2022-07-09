@@ -1,4 +1,4 @@
-package com.example.spoonacularapp.ui
+package com.example.spoonacularapp.ui.activities.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

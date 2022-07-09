@@ -12,11 +12,20 @@ class RecipesRowBinding {
 
     companion object{
 
+        @BindingAdapter("setDescription")
+        @JvmStatic
+        fun setDescription(textView: TextView, summary: String){
+            textView.text = summary
+                                .replace("<b>", "")
+                                .replace("</b>", "")
+        }
+
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic
         fun loadImageFromUrl(imageView: ImageView, imageUrl: String){
             imageView.load(imageUrl){
                 crossfade(500)
+                error(R.drawable.ic_error_placeholder)
             }
         }
 
