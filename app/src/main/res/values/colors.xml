@@ -16,4 +16,10 @@
     <color name="red">#FF4646</color>
     <color name="yellow">#FFC114</color>
     <color name="green">#00C980</color>
+
+    // chip
+    <color name="checkedBackground">@color/colorPrimaryDark</color>
+    <color name="uncheckedBackground">@color/lightMediumGray</color>
+    <color name="checkedText">@color/colorSecondaryDark</color>
+    <color name="uncheckedText">@color/dark</color>
 </resources>

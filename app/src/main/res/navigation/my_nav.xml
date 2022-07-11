@@ -9,7 +9,11 @@
         android:id="@+id/recipesFragment"
         android:name="com.example.spoonacularapp.ui.activities.main.fragments.recipes.RecipesFragment"
         android:label="@string/recipes_fragment_title"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
+            app:destination="@id/recipesBottomSheet" />
+    </fragment>
     <fragment
         android:id="@+id/favouriteRecipesFragment"
         android:name="com.example.spoonacularapp.ui.activities.main.fragments.favorites.FavouriteRecipes"
@@ -20,4 +24,13 @@
         android:name="com.example.spoonacularapp.ui.activities.main.fragments.history.BrowsingHistory"
         android:label="@string/browsing_history_fragment_title"
         tools:layout="@layout/fragment_browsing_history" />
+    <dialog
+        android:id="@+id/recipesBottomSheet"
+        android:name="com.example.spoonacularapp.ui.activities.main.fragments.recipes.bottomsheet.RecipesBottomSheet"
+        android:label="recipes_bottom_sheet"
+        tools:layout="@layout/recipes_bottom_sheet" >
+        <action
+            android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </dialog>
 </navigation>

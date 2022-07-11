@@ -5,9 +5,14 @@
         <item name="cornerSize">30%</item>
     </style>
     <style name="card_stroke">
-<!--        app:cardCornerRadius="5dp"-->
         app:strokeWidth="1dp"
         app:strokeColor="@color/lightMediumGray"
         app:cardCornerRadius="10dp"
+    </style>
+
+    <style name="customChip" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="checkedIconTint">@color/chip_text</item>
     </style>
 </resources>
