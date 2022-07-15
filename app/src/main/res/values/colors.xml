@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f9fbe7</color>
-    <color name="colorPrimaryDark">#c6c8b5</color>
-    <color name="colorSecondary">#96b397</color>
-    <color name="colorSecondaryDark">#688369</color>
+<!--    <color name="colorPrimary">#f9fbe7</color>-->
+    <color name="colorPrimary">#ffffff</color>
+<!--    <color name="colorPrimaryDark">#e3e6cf</color>-->
+    <color name="colorPrimaryDark">@color/lightGray</color>
+    <color name="colorSecondary">#80ad82</color>
+    <color name="colorSecondaryDark">#4e7950</color>
 
     <color name="white">#FFFFFF</color>
     <color name="lightGray">#F9F9F9</color>
@@ -15,7 +17,7 @@
     <color name="black">#000000</color>
     <color name="red">#FF4646</color>
     <color name="yellow">#FFC114</color>
-    <color name="green">#00C980</color>
+    <color name="green">#038f5c</color>
 
     // chip
     <color name="checkedBackground">@color/colorPrimaryDark</color>
