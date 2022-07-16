@@ -37,4 +37,8 @@
     <string name="soup">Soup</string>
     <string name="apply">Apply</string>
     <string name="search">Search</string>
+    <string name="dairy_free">Dairy Free</string>
+    <string name="healthy">Healthy</string>
+    <string name="cheap">Cheap</string>
+    <string name="lorem_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet nunc at velit lobortis malesuada. Pellentesque porta dictum lectus, a varius erat. Donec a eros in sapien porttitor volutpat. Duis elementum bibendum nisl, id posuere odio vestibulum id. Morbi dignissim ac augue non egestas. Etiam dapibus eros urna, non tristique ante faucibus ut. Proin quis nisl orci. Donec at viverra magna. Nunc et tellus posuere, convallis dolor in, euismod erat. Etiam condimentum elit lacinia lacinia posuere. Donec at suscipit arcu. Nunc ac bibendum nunc. Nullam egestas metus eu orci cursus egestas. Praesent sit amet ultricies tortor, sit amet vulputate justo. Curabitur nec nisl et turpis consectetur faucibus vitae ac dolor.</string>
 </resources>

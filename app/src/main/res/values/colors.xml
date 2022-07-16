@@ -24,4 +24,11 @@
     <color name="uncheckedBackground">@color/lightMediumGray</color>
     <color name="checkedText">@color/colorSecondaryDark</color>
     <color name="uncheckedText">@color/dark</color>
+
+    // ingredient card view
+    <color name="actionBarBackgroundColor">@color/colorPrimary</color>
+    <color name="strokeColor">@color/lightMediumGray</color>
+    <color name="cardBackgroundColor">@color/white</color>
+    <color name="titleColor">@color/darker</color>
+
 </resources>

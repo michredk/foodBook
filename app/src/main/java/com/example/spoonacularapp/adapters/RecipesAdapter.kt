@@ -1,5 +1,6 @@
 package com.example.spoonacularapp.adapters
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -35,6 +36,17 @@ class RecipesAdapter: RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        // for clickable recipes cards
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val attrs = intArrayOf(android.R.attr.selectableItemBackgroundBorderless)
+            val typedArray = holder.itemView.context.obtainStyledAttributes(attrs)
+            val selectableItemBackground = typedArray.getResourceId(0, 0)
+            typedArray.recycle()
+            holder.itemView.isClickable = true
+            holder.itemView.isFocusable = true
+            holder.itemView.foreground = holder.itemView.context.getDrawable(selectableItemBackground)
+        }
+
         val currentRecipe = recipes[position]
         holder.bind(currentRecipe)
     }

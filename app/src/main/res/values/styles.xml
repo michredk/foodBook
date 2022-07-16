@@ -7,7 +7,7 @@
 
     <style name="card_stroke">
         <item name="strokeWidth">1dp</item>
-        <item name="strokeColor">@color/lightMediumGray</item>
+        <item name="strokeColor">@color/strokeColor</item>
         <item name="cardCornerRadius">10dp</item>
     </style>
 
@@ -15,5 +15,16 @@
         <item name="chipBackgroundColor">@color/chip_background</item>
         <item name="android:textColor">@color/chip_text</item>
         <item name="checkedIconTint">@color/chip_text</item>
+    </style>
+
+    <style name="CustomTabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="background">@color/actionBarBackgroundColor</item>
+        <item name="tabIndicatorColor">@color/colorSecondaryDark</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabSelectedTextColor">@color/black</item>
+    </style>
+
+    <style name="CustomTabTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

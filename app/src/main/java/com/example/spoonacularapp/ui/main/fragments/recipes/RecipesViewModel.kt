@@ -1,4 +1,4 @@
-package com.example.spoonacularapp.ui.activities.main.fragments.recipes
+package com.example.spoonacularapp.ui.main.fragments.recipes
 
 import android.app.Application
 import android.widget.Toast

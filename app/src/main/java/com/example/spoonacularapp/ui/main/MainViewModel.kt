@@ -1,4 +1,4 @@
-package com.example.spoonacularapp.ui.activities.main
+package com.example.spoonacularapp.ui.main
 
 import android.app.Application
 import android.content.Context

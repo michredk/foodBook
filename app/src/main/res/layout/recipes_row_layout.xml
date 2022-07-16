@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="result"
             type="com.example.spoonacularapp.model.Result" />
@@ -11,6 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/recipesRowLayout"
+        onRecipeClickListener="@{result}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -62,12 +64,12 @@
 
                 <TextView
                     android:id="@+id/description_textView"
+                    setDescription="@{result.summary}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:ellipsize="end"
                     android:maxLines="3"
-                    setDescription="@{result.summary}"
                     android:textColor="@color/darkGray"
                     app:layout_constraintEnd_toEndOf="@+id/title_textView"
                     app:layout_constraintStart_toStartOf="@+id/title_textView"
@@ -92,8 +94,8 @@
                     android:id="@+id/heart_textView"
                     setNumberOfLikes="@{result.aggregateLikes}"
                     android:layout_width="wrap_content"
-                    android:minWidth="25dp"
                     android:layout_height="wrap_content"
+                    android:minWidth="25dp"
                     android:text="@string/number_placeholder"
                     android:textAlignment="center"
                     android:textColor="@color/red"
@@ -104,11 +106,11 @@
                     android:id="@+id/time_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:tint="@color/yellow"
                     app:layout_constraintEnd_toEndOf="@+id/time_textView"
                     app:layout_constraintStart_toStartOf="@+id/time_textView"
                     app:layout_constraintTop_toTopOf="@+id/heart_imageView"
-                    app:srcCompat="@drawable/ic_timer" />
+                    app:srcCompat="@drawable/ic_timer"
+                    app:tint="@color/yellow" />
 
                 <TextView
                     android:id="@+id/time_textView"
@@ -125,12 +127,12 @@
                 <ImageView
                     android:id="@+id/leaf_imageView"
                     applyVeganColor="@{result.vegan}"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="@+id/leaf_textView"
                     app:layout_constraintStart_toStartOf="@+id/leaf_textView"
                     app:layout_constraintTop_toTopOf="@+id/time_imageView"
-                    app:srcCompat="@drawable/ic_leaf"
-                    android:layout_width="wrap_content" />
+                    app:srcCompat="@drawable/ic_leaf" />
 
                 <TextView
                     android:id="@+id/leaf_textView"

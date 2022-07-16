@@ -1,17 +1,15 @@
-package com.example.spoonacularapp.ui.activities.main.fragments.recipes.bottomsheet
+package com.example.spoonacularapp.ui.main.fragments.recipes.bottomsheet
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
-import com.example.spoonacularapp.R
 import com.example.spoonacularapp.databinding.RecipesBottomSheetBinding
-import com.example.spoonacularapp.ui.activities.main.fragments.recipes.RecipesViewModel
+import com.example.spoonacularapp.ui.main.fragments.recipes.RecipesViewModel
 import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_DIET_TYPE
 import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_MEAL_TYPE
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -41,8 +39,7 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(
-            inflater, R.layout.recipes_bottom_sheet, container, false)
+        _binding = RecipesBottomSheetBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
         recipesViewModel.readMealAndDietType.asLiveData().observe(viewLifecycleOwner) { value ->

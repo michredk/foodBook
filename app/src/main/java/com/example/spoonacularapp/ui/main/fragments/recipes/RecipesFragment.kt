@@ -1,4 +1,4 @@
-package com.example.spoonacularapp.ui.activities.main.fragments.recipes
+package com.example.spoonacularapp.ui.main.fragments.recipes
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +18,7 @@ import com.example.spoonacularapp.R
 import com.example.spoonacularapp.adapters.RecipesAdapter
 import com.example.spoonacularapp.databinding.FragmentRecipesBinding
 import com.example.spoonacularapp.model.FoodRecipe
-import com.example.spoonacularapp.ui.activities.main.MainViewModel
+import com.example.spoonacularapp.ui.main.MainViewModel
 import com.example.spoonacularapp.util.NetworkListener
 import com.example.spoonacularapp.util.NetworkResult
 import com.example.spoonacularapp.util.observeOnce
@@ -30,14 +29,11 @@ import kotlinx.coroutines.launch
 class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener {
 
     private val args by navArgs<RecipesFragmentArgs>()
+    private lateinit var binding: FragmentRecipesBinding
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
     private val mAdapter by lazy { RecipesAdapter() }
-
-    private var _binding: FragmentRecipesBinding? = null
-    private val binding get() = _binding!!
-
     private lateinit var networkListener: NetworkListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,8 +47,7 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_recipes, container, false)
+        binding = FragmentRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
 
@@ -161,11 +156,6 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
 
     private fun hideShimmerEffect() {
         binding.recyclerView.hideShimmer()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

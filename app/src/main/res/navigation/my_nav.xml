@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.example.spoonacularapp.ui.activities.main.fragments.recipes.RecipesFragment"
+        android:name="com.example.spoonacularapp.ui.main.fragments.recipes.RecipesFragment"
         android:label="@string/recipes_fragment_title"
         tools:layout="@layout/fragment_recipes" >
         <action
@@ -17,20 +17,23 @@
             android:name="backFromBottomSheet"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_recipesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
     </fragment>
     <fragment
         android:id="@+id/favouriteRecipesFragment"
-        android:name="com.example.spoonacularapp.ui.activities.main.fragments.favorites.FavouriteRecipes"
+        android:name="com.example.spoonacularapp.ui.main.fragments.favorites.FavouriteRecipes"
         android:label="@string/favorite_recipes_fragment_title"
         tools:layout="@layout/fragment_favourite_recipes" />
     <fragment
         android:id="@+id/browsingHistoryFragment"
-        android:name="com.example.spoonacularapp.ui.activities.main.fragments.history.BrowsingHistory"
+        android:name="com.example.spoonacularapp.ui.main.fragments.history.BrowsingHistory"
         android:label="@string/browsing_history_fragment_title"
         tools:layout="@layout/fragment_browsing_history" />
     <dialog
         android:id="@+id/recipesBottomSheet"
-        android:name="com.example.spoonacularapp.ui.activities.main.fragments.recipes.bottomsheet.RecipesBottomSheet"
+        android:name="com.example.spoonacularapp.ui.main.fragments.recipes.bottomsheet.RecipesBottomSheet"
         android:label="recipes_bottom_sheet"
         tools:layout="@layout/recipes_bottom_sheet" >
         <action
@@ -39,4 +42,13 @@
             app:popUpTo="@id/recipesFragment"
             app:popUpToInclusive="true" />
     </dialog>
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="com.example.spoonacularapp.ui.details.DetailsActivity"
+        android:label="Details"
+        tools:layout="@layout/activity_details" >
+        <argument
+            android:name="result"
+            app:argType="com.example.spoonacularapp.model.Result" />
+    </activity>
 </navigation>
