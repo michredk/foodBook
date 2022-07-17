@@ -1,4 +1,4 @@
-package com.example.spoonacularapp.data.database
+package com.example.spoonacularapp.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,7 +1,7 @@
 package com.example.spoonacularapp.data
 
 import com.example.spoonacularapp.data.database.RecipesDao
-import com.example.spoonacularapp.data.database.RecipesEntity
+import com.example.spoonacularapp.data.database.entities.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

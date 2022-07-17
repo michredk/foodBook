@@ -19,10 +19,12 @@ class Constants {
         const val QUERY_ADD_RECIPE_INFORMATION = "addRecipeInformation"
 
         const val QUERY_FILL_INGREDIENTS = "fillIngredients"
+
         // ROOM Database
         const val DATABASE_NAME = "recipes_database"
-
         const val RECIPES_TABLE = "recipes_table"
+        const val FAVORITES_TABLE = "favorites_table"
+
         // Bottom sheet and preferences
         const val DEFAULT_RECIPES_NUMBER = "50"
         const val DEFAULT_MEAL_TYPE="main course"

@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.example.spoonacularapp.data.Repository
-import com.example.spoonacularapp.data.database.RecipesEntity
+import com.example.spoonacularapp.data.database.entities.RecipesEntity
 import com.example.spoonacularapp.model.FoodRecipe
 import com.example.spoonacularapp.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
