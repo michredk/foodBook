@@ -124,6 +124,7 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
             is NetworkResult.Success -> {
                 hideShimmerEffect()
                 response.data?.let { mAdapter.setData(it) }
+                recipesViewModel.saveMealAndDietType()
             }
             is NetworkResult.Error -> {
                 hideShimmerEffect()
@@ -160,10 +161,8 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.recipes_menu, menu)
-
         val search = menu.findItem(R.id.menu_search)
         val searchView = search.actionView as? SearchView
-//        searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
     }
 

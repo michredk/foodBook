@@ -23,9 +23,13 @@
     </fragment>
     <fragment
         android:id="@+id/favouriteRecipesFragment"
-        android:name="com.example.spoonacularapp.ui.main.fragments.favorites.FavouriteRecipes"
+        android:name="com.example.spoonacularapp.ui.main.fragments.favorites.FavoritesGroupsFragment"
         android:label="@string/favorite_recipes_fragment_title"
-        tools:layout="@layout/fragment_favourite_recipes" />
+        tools:layout="@layout/fragment_favourites_groups" >
+        <action
+            android:id="@+id/action_favouriteRecipesFragment_to_favoritesGroupsBottomSheet"
+            app:destination="@id/favoritesGroupsBottomSheet" />
+    </fragment>
     <fragment
         android:id="@+id/browsingHistoryFragment"
         android:name="com.example.spoonacularapp.ui.main.fragments.history.BrowsingHistory"
@@ -51,4 +55,16 @@
             android:name="result"
             app:argType="com.example.spoonacularapp.model.Result" />
     </activity>
+    <dialog
+        android:id="@+id/favoritesGroupsBottomSheet"
+        android:name="com.example.spoonacularapp.ui.main.fragments.favorites.bottomsheet.FavoritesGroupsBottomSheet"
+        android:label="FavoritesGroupsBottomSheet"
+        tools:layout="@layout/favorites_bottom_sheet" >
+
+        <action
+            android:id="@+id/action_favoritesGroupsBottomSheet_to_favouriteRecipesFragment"
+            app:destination="@id/favouriteRecipesFragment"
+            app:popUpTo="@id/favouriteRecipesFragment"
+            app:popUpToInclusive="true" />
+    </dialog>
 </navigation>

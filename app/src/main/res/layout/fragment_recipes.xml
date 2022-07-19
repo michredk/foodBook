@@ -43,7 +43,7 @@
             app:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:shapeAppearanceOverlay="@style/fab_squared"
+            app:shapeAppearanceOverlay="@style/btn_squared"
             android:focusable="true" />
 
         <ImageView

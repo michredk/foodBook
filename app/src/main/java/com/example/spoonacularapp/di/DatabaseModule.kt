@@ -22,8 +22,9 @@ object DatabaseModule {
     ) = Room.databaseBuilder(
         context,
         RecipesDatabase::class.java,
-        DATABASE_NAME
-    ).build()
+        DATABASE_NAME)
+        .fallbackToDestructiveMigration()
+        .build()
 
     @Singleton
     @Provides

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">#f9fbe7</color>-->
+
     <color name="colorPrimary">#ffffff</color>
-<!--    <color name="colorPrimaryDark">#e3e6cf</color>-->
     <color name="colorPrimaryDark">@color/lightGray</color>
     <color name="colorSecondary">#80ad82</color>
     <color name="colorSecondaryDark">#4e7950</color>
@@ -30,5 +29,11 @@
     <color name="strokeColor">@color/lightMediumGray</color>
     <color name="cardBackgroundColor">@color/white</color>
     <color name="titleColor">@color/darker</color>
+
+    // btn
+    <color name="enabledBackground">@color/colorSecondaryDark</color>
+    <color name="disabledBackground">@color/lightMediumGray</color>
+    <color name="enabledText">@color/white</color>
+    <color name="disabledText">@color/dark</color>
 
 </resources>

@@ -2,13 +2,12 @@ package com.example.spoonacularapp.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.spoonacularapp.model.FoodRecipe
-import com.example.spoonacularapp.util.Constants.Companion.FAVORITES_TABLE
+import com.example.spoonacularapp.model.Result
+import com.example.spoonacularapp.util.Constants
 
-@Entity(tableName = FAVORITES_TABLE)
+@Entity(tableName = Constants.FAVORITES_TABLE)
 class FavoritesEntity (
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var name: String,
-    var foodRecipe: FoodRecipe
+    var result: Result
 )

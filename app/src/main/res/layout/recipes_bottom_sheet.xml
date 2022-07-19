@@ -286,7 +286,7 @@
             android:backgroundTint="@color/colorSecondary"
             android:textColor="@color/white"
             android:textAllCaps="false"
-            app:shapeAppearanceOverlay="@style/fab_squared"
+            app:shapeAppearanceOverlay="@style/btn_squared"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="fab_squared">
+    <style name="btn_squared">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">30%</item>
     </style>
@@ -26,5 +26,16 @@
 
     <style name="CustomTabTextStyle" parent="TextAppearance.Design.Tab">
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="dialogWithKeyboard" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="btnDisabledStyle">
+        <item name="backgroundTint">@color/btn_disabled_enabled_background</item>
+        <item name="android:textColor">@color/btn_disabled_enabled_text</item>
     </style>
 </resources>
