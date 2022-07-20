@@ -36,7 +36,7 @@ class RecipesAdapter: RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // for clickable recipes cards
+        // click animation for recipes cards
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val attrs = intArrayOf(android.R.attr.selectableItemBackgroundBorderless)
             val typedArray = holder.itemView.context.obtainStyledAttributes(attrs)

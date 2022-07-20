@@ -27,13 +27,22 @@
     // ingredient card view
     <color name="actionBarBackgroundColor">@color/colorPrimary</color>
     <color name="strokeColor">@color/lightMediumGray</color>
+    <color name="selectedStrokeColor">@color/colorSecondary</color>
     <color name="cardBackgroundColor">@color/white</color>
+    <color name="selectedCardBackgroundColor">#2080ad82</color>
     <color name="titleColor">@color/darker</color>
+
+    <color name="shimmerPlaceholderColor">@color/lightMediumGray</color>
 
     // btn
     <color name="enabledBackground">@color/colorSecondaryDark</color>
     <color name="disabledBackground">@color/lightMediumGray</color>
     <color name="enabledText">@color/white</color>
     <color name="disabledText">@color/dark</color>
+
+    //
+    <color name="statusBarColor">@color/colorPrimary</color>
+    <color name="contextualStatusBarColor">@color/colorSecondaryDark</color>
+    <color name="contextualActionBarColor">@color/colorPrimary</color>
 
 </resources>

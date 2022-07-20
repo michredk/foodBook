@@ -46,4 +46,8 @@
     <string name="add">Add</string>
     <string name="save_to_favorites">Save to favorites</string>
     <string name="message_favorites_dialog">Choose your favorites group:</string>
+    <string name="favorites_group_is_empty">Favorites group is empty.</string>
+    <string name="there_is_no_favorites_groups">There is no favorites groups.</string>
+    <string name="addGroup_fab">to groups bottom sheet</string>
+    <string name="delete_favorite_menu">Delete favorite menu</string>
 </resources>

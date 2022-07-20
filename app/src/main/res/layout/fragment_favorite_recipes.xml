@@ -5,25 +5,38 @@
 
     <data>
 
+        <variable
+            name="mainViewModel"
+            type="com.example.spoonacularapp.ui.main.MainViewModel" />
+
+        <variable
+            name="mAdapter"
+            type="com.example.spoonacularapp.adapters.FavoriteRecipesAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        tools:context=".ui.details.fragments.ingredients.IngredientsFragment">
+        tools:context=".ui.main.fragments.favorites.FavoriteRecipesFragment">
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/favoriteGroups_recyclerView"
+            android:id="@+id/favoriteRecipes_RecyclerView"
+            setData="@{mAdapter}"
+            setVisibility="@{mainViewModel.readFavoriteRecipes}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/noData_imageView"
+            setVisibility="@{mainViewModel.readFavoriteRecipes}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="0.5"
@@ -38,33 +51,17 @@
 
         <TextView
             android:id="@+id/noData_textView"
+            setVisibility="@{mainViewModel.readFavoriteRecipes}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:alpha="0.75"
-            android:text="@string/there_is_no_favorites_groups"
+            android:text="@string/favorites_group_is_empty"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/noData_imageView"
             app:layout_constraintStart_toStartOf="@+id/noData_imageView"
             app:layout_constraintTop_toBottomOf="@+id/noData_imageView" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addGroup_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
-            android:clickable="true"
-            android:contentDescription="@string/addGroup_fab"
-            android:focusable="true"
-            android:src="@drawable/ic_add_group"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:maxImageSize="36dp"
-            app:shapeAppearanceOverlay="@style/btn_squared"
-            app:tint="@color/white" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

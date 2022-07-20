@@ -38,7 +38,7 @@ class FavoritesGroupsBottomSheet : BottomSheetDialogFragment() {
         binding.groupNameEditText.addTextChangedListener(textWatcher)
         binding.addBtn.setOnClickListener {
             favoritesGroupsViewModel.addFavoriteGroup(binding.groupNameEditText.toString())
-            findNavController().navigate(R.id.action_favoritesGroupsBottomSheet_to_favouriteRecipesFragment)
+            findNavController().navigate(R.id.action_favoritesGroupsBottomSheet_to_favoritesGroupsFragment)
         }
 
         return binding.root

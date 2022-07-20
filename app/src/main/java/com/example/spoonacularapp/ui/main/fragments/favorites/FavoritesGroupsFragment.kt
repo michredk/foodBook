@@ -21,7 +21,7 @@ class FavoritesGroupsFragment : Fragment() {
         binding = FragmentFavouritesGroupsBinding.inflate(layoutInflater, container, false)
 
         binding.addGroupFab.setOnClickListener{
-            findNavController().navigate(R.id.action_favouriteRecipesFragment_to_favoritesGroupsBottomSheet)
+            findNavController().navigate(R.id.action_favoritesGroupsFragment_to_favoritesGroupsBottomSheet)
         }
 
         return binding.root
