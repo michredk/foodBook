@@ -50,4 +50,5 @@
     <string name="there_is_no_favorites_groups">There is no favorites groups.</string>
     <string name="addGroup_fab">to groups bottom sheet</string>
     <string name="delete_favorite_menu">Delete favorite menu</string>
+    <string name="calendar">Calendar</string>
 </resources>

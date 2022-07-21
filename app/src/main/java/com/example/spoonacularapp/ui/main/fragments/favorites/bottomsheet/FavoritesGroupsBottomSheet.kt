@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.spoonacularapp.R
 import com.example.spoonacularapp.databinding.FavoritesBottomSheetBinding
-import com.example.spoonacularapp.ui.main.fragments.favorites.FavoritesGroupsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 

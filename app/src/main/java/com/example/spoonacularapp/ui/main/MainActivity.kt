@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.MainActivityTheme)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.recipesFragment,
                 R.id.favouriteRecipesFragment,
-                R.id.browsingHistoryFragment
+                R.id.calendarFragment
             )
         )
         binding.bottomNavigationView.setupWithNavController(navController)

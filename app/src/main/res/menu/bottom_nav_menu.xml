@@ -9,7 +9,7 @@
         android:title="@string/favorite_recipes_fragment_title"
         android:icon="@drawable/ic_star"/>
 
-    <item android:id="@+id/browsingHistoryFragment"
-        android:title="@string/browsing_history_fragment_title"
-        android:icon="@drawable/ic_history"/>
+    <item android:id="@+id/calendarFragment"
+        android:title="@string/calendar"
+        android:icon="@drawable/ic_calendar"/>
 </menu>

@@ -31,10 +31,10 @@
             app:destination="@id/detailsActivity" />
     </fragment>
     <fragment
-        android:id="@+id/browsingHistoryFragment"
-        android:name="com.example.spoonacularapp.ui.main.fragments.history.BrowsingHistory"
-        android:label="@string/browsing_history_fragment_title"
-        tools:layout="@layout/fragment_browsing_history" />
+        android:id="@+id/calendarFragment"
+        android:name="com.example.spoonacularapp.ui.main.fragments.calendar.CalendarFragment"
+        android:label="Calendar"
+        tools:layout="@layout/fragment_calendar" />
     <dialog
         android:id="@+id/recipesBottomSheet"
         android:name="com.example.spoonacularapp.ui.main.fragments.recipes.bottomsheet.RecipesBottomSheet"

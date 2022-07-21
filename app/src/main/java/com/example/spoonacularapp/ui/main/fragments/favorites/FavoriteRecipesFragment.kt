@@ -32,7 +32,7 @@ class FavoriteRecipesFragment : Fragment() {
 
         setupRecyclerView(binding.favoriteRecipesRecyclerView)
 
-        // Dont have to observe because doing it by binding adapter
+        // Don't have to observe because doing it by binding adapter
 //        mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) { favoritesEntity ->
 //            mAdapter.setData(favoritesEntity)
 //        }
