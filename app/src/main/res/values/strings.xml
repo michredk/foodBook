@@ -51,4 +51,13 @@
     <string name="addGroup_fab">to groups bottom sheet</string>
     <string name="delete_favorite_menu">Delete favorite menu</string>
     <string name="calendar">Calendar</string>
+    <string name="name_placeholder">Name</string>
+    <string name="red">Red</string>
+    <string name="orange">Orange</string>
+    <string name="yellow">Yellow</string>
+    <string name="green">Green</string>
+    <string name="dark_green">Dark green</string>
+    <string name="marine">Marine</string>
+    <string name="blue">Blue</string>
+    <string name="select_color_for_your_group_theme">Select color for your group theme:</string>
 </resources>

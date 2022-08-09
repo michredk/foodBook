@@ -31,4 +31,5 @@ class RecipesTypeConverter {
         val resultType = object: TypeToken<Result>() {}.type
         return gson.fromJson(data, resultType)
     }
+
 }

@@ -1,9 +1,11 @@
 package com.example.spoonacularapp.ui.details
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -12,6 +14,7 @@ import androidx.navigation.navArgs
 import com.example.spoonacularapp.R
 import com.example.spoonacularapp.adapters.PagerAdapter
 import com.example.spoonacularapp.data.database.entities.FavoritesEntity
+import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
 import com.example.spoonacularapp.databinding.ActivityDetailsBinding
 import com.example.spoonacularapp.ui.details.fragments.ingredients.IngredientsFragment
 import com.example.spoonacularapp.ui.details.fragments.instructions.InstructionsFragment
@@ -31,6 +34,8 @@ class DetailsActivity : AppCompatActivity() {
 
     private var recipeSaved = false
     private var savedRecipeId = 0
+    private lateinit var groups: List<FavoritesGroupsEntity>
+    private lateinit var selected: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,9 +70,13 @@ class DetailsActivity : AppCompatActivity() {
             adapter = pagerAdapter
         }
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) {tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = titles[position]
         }.attach()
+
+        mainViewModel.readFavoritesGroups.observe(this) {
+            groups = mainViewModel.readFavoritesGroups.value!!
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -78,59 +87,63 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             finish()
         } else if (item.itemId == R.id.save_to_favorites_menu && !recipeSaved) {
-
-//            val favoritesGroups = mainViewModel.readFavoriteGroups.value?.map { it.name }
-//                ?.toTypedArray()
-//
-//            if(favoritesGroups.isNullOrEmpty()){
-//                Toast.makeText(
-//                    this,
-//                    "You have to create a favorites group.",
-//                    Toast.LENGTH_SHORT)
-//                return super.onOptionsItemSelected(item)
-//            }
-//
-//            var selected by Delegates.notNull<String>()
-//
-//            AlertDialog.Builder(this)
-//                .setSingleChoiceItems(favoritesGroups, 0) { dialog, position ->
-//                    selected = favoritesGroups[position]
-//                }.show()
-//            val selectedGroup = mainViewModel.readFavoriteGroups.value!![favoritesGroups.indexOf(selected)]
-
-
-            saveToFavorites(item)
-        } else if(item.itemId == R.id.save_to_favorites_menu && recipeSaved){
+            if (displayDialogToSelectGroup(item))
+                return super.onOptionsItemSelected(item)
+        } else if (item.itemId == R.id.save_to_favorites_menu && recipeSaved) {
             removeFromFavorites(item)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun displayDialogToSelectGroup(item: MenuItem): Boolean {
+        val favoritesGroups = groups.map { it.name }.toTypedArray()
+        if (favoritesGroups.isEmpty()) {
+            Toast.makeText(
+                this,
+                "You have to create a favorites group.",
+                Toast.LENGTH_SHORT
+            ).show()
+            return super.onOptionsItemSelected(item)
+        }
+
+        selected = favoritesGroups[0]
+        AlertDialog.Builder(this)
+            .setTitle("Favorites Groups")
+            .setItems(favoritesGroups) { _, position ->
+                selected = favoritesGroups[position]
+                val selectedGroup =
+                    mainViewModel.readFavoritesGroups.value!![favoritesGroups.indexOf(selected)]
+                saveToFavorites(item, selectedGroup)
+            }.show()
+        return false
     }
 
     // colors favorite star if recipe is already added to favorites
     private fun checkSavedRecipes(menuItem: MenuItem) {
         mainViewModel.readFavoriteRecipes.observe(this) { favoritesEntity ->
             try {
-                for(savedRecipe in favoritesEntity) {
-                    if(savedRecipe.result.id == args.result.id){
+                for (savedRecipe in favoritesEntity) {
+                    if (savedRecipe.result.id == args.result.id) {
                         changeMenuItemColor(menuItem, R.color.yellow)
                         savedRecipeId = savedRecipe.id
                         recipeSaved = true
                     }
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d("DetailsActivity", e.message.toString())
             }
         }
     }
 
-    private fun saveToFavorites(item: MenuItem) {
+    private fun saveToFavorites(item: MenuItem, selectedGroup: FavoritesGroupsEntity) {
         val favoritesEntity =
             FavoritesEntity(
                 0,
-                args.result
+                args.result,
+                selectedGroup.id
             )
         mainViewModel.insertFavoriteRecipe(favoritesEntity)
         changeMenuItemColor(item, R.color.yellow)
@@ -142,7 +155,8 @@ class DetailsActivity : AppCompatActivity() {
         val favoritesEntity =
             FavoritesEntity(
                 savedRecipeId,
-                args.result
+                args.result,
+                0
             )
         mainViewModel.deleteFavoriteRecipe(favoritesEntity)
         changeMenuItemColor(item, R.color.mediumGray)
@@ -155,7 +169,7 @@ class DetailsActivity : AppCompatActivity() {
             binding.detailLayout,
             message,
             Snackbar.LENGTH_SHORT
-        ).setAction("Okay"){}
+        ).setAction("Okay") {}
             .show()
     }
 

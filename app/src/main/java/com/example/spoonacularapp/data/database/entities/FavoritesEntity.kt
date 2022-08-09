@@ -9,5 +9,6 @@ import com.example.spoonacularapp.util.Constants
 class FavoritesEntity (
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var result: Result
+    var result: Result,
+    var groupId: Int
 )

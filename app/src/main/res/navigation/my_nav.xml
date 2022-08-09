@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_favouriteRecipesFragment_to_detailsActivity"
             app:destination="@id/detailsActivity" />
+        <argument
+            android:name="groupId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -69,9 +72,12 @@
     <fragment
         android:id="@+id/favoritesGroupsFragment"
         android:name="com.example.spoonacularapp.ui.main.fragments.favorites.FavoritesGroupsFragment"
-        android:label="FavoritesGroupsFragment" >
+        android:label="Favorites Groups" >
         <action
             android:id="@+id/action_favoritesGroupsFragment_to_favoritesGroupsBottomSheet"
             app:destination="@id/favoritesGroupsBottomSheet" />
+        <action
+            android:id="@+id/action_favoritesGroupsFragment_to_favouriteRecipesFragment"
+            app:destination="@id/favouriteRecipesFragment" />
     </fragment>
 </navigation>

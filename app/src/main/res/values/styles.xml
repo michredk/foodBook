@@ -17,6 +17,12 @@
         <item name="checkedIconTint">@color/chip_text</item>
     </style>
 
+    <style name="customColorChip" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="checkedIconTint">@color/chip_text</item>
+    </style>
+
     <style name="CustomTabLayoutStyle" parent="Widget.Design.TabLayout">
         <item name="background">@color/actionBarBackgroundColor</item>
         <item name="tabIndicatorColor">@color/colorSecondaryDark</item>

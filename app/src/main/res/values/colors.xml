@@ -17,6 +17,11 @@
     <color name="red">#FF4646</color>
     <color name="yellow">#FFC114</color>
     <color name="green">#038f5c</color>
+    <color name="themeGreen">@color/colorSecondary</color>
+    <color name="themeGreenDark">@color/colorSecondaryDark</color>
+    <color name="orange">#fcba03</color>
+    <color name="marine">#00fad0</color>
+    <color name="blue">#009efa</color>
 
     // chip
     <color name="checkedBackground">@color/colorPrimaryDark</color>

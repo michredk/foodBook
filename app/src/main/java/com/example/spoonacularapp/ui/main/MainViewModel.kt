@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.example.spoonacularapp.data.Repository
 import com.example.spoonacularapp.data.database.entities.FavoritesEntity
+import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
 import com.example.spoonacularapp.data.database.entities.RecipesEntity
 import com.example.spoonacularapp.model.FoodRecipe
 import com.example.spoonacularapp.util.NetworkResult
@@ -26,6 +27,7 @@ class MainViewModel @Inject constructor(
 
     val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
     val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
+    val readFavoritesGroups: LiveData<List<FavoritesGroupsEntity>> = repository.local.readFavoritesGroups().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
@@ -37,9 +39,19 @@ class MainViewModel @Inject constructor(
             repository.local.insertFavoriteRecipe(favoritesEntity)
         }
 
+    fun insertFavoritesGroup(favoritesGroupsEntity: FavoritesGroupsEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFavoritesGroup(favoritesGroupsEntity)
+        }
+
     fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.deleteFavoriteRecipe(favoritesEntity)
+        }
+
+    fun deleteFavoritesGroup(favoritesGroupsEntity: FavoritesGroupsEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteFavoritesGroup(favoritesGroupsEntity)
         }
 
     private fun deleteAllFavoriteRecipes() =

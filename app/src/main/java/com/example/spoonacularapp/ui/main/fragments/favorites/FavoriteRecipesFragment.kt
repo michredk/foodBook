@@ -28,14 +28,16 @@ class FavoriteRecipesFragment : Fragment() {
         binding = FragmentFavoriteRecipesBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
-        binding.mAdapter = mAdapter
 
         setupRecyclerView(binding.favoriteRecipesRecyclerView)
 
-        // Don't have to observe because doing it by binding adapter
-//        mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) { favoritesEntity ->
-//            mAdapter.setData(favoritesEntity)
-//        }
+        val groupId = arguments?.getInt("groupId")
+
+        mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) { favoritesEntity ->
+            mAdapter.setData(favoritesEntity.filter {
+                it.groupId == groupId
+            })
+        }
 
         return binding.root
     }

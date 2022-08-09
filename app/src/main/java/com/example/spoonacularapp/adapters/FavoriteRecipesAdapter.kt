@@ -146,13 +146,6 @@ class FavoriteRecipesAdapter(
         return favoriteRecipes.size
     }
 
-    fun setData(newFavoriteRecipes: List<FavoritesEntity>) {
-        val favoriteRecipesDiffUtil = RecipesDiffUtil(favoriteRecipes, newFavoriteRecipes)
-        val diffUtilResult = DiffUtil.calculateDiff(favoriteRecipesDiffUtil)
-        favoriteRecipes = newFavoriteRecipes
-        diffUtilResult.dispatchUpdatesTo(this)
-    }
-
     override fun onCreateActionMode(actionMode: ActionMode?, menu: Menu?): Boolean {
         actionMode?.menuInflater?.inflate(R.menu.favorites_contextual_menu, menu)
         mActionMode = actionMode!!
@@ -213,5 +206,12 @@ class FavoriteRecipesAdapter(
         if (this::mActionMode.isInitialized) {
             mActionMode.finish()
         }
+    }
+
+    fun setData(newFavoriteRecipes: List<FavoritesEntity>) {
+        val favoriteRecipesDiffUtil = RecipesDiffUtil(favoriteRecipes, newFavoriteRecipes)
+        val diffUtilResult = DiffUtil.calculateDiff(favoriteRecipesDiffUtil)
+        favoriteRecipes = newFavoriteRecipes
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 }
