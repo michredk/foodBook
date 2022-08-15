@@ -39,7 +39,22 @@ class FavoritesGroupsAdapter : RecyclerView.Adapter<FavoritesGroupsAdapter.MyVie
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // click animation for groups cards
+        clickAnimationForCard(holder)
+
+        val currentGroup = groups[position]
+        holder.bind(currentGroup)
+
+        // single click
+        holder.itemView.findViewById<ConstraintLayout>(R.id.groupRowLayout).setOnClickListener {
+            val action =
+                FavoritesGroupsFragmentDirections.actionFavoritesGroupsFragmentToFavouriteRecipesFragment(
+                    currentGroup.id, currentGroup.color
+                )
+            holder.itemView.findNavController().navigate(action)
+        }
+    }
+
+    private fun clickAnimationForCard(holder: MyViewHolder) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val attrs = intArrayOf(android.R.attr.selectableItemBackgroundBorderless)
             val typedArray = holder.itemView.context.obtainStyledAttributes(attrs)
@@ -49,17 +64,6 @@ class FavoritesGroupsAdapter : RecyclerView.Adapter<FavoritesGroupsAdapter.MyVie
             holder.itemView.isFocusable = true
             holder.itemView.foreground =
                 holder.itemView.context.getDrawable(selectableItemBackground)
-        }
-        val currentGroup = groups[position]
-        holder.bind(currentGroup)
-
-        // single click
-        holder.itemView.findViewById<ConstraintLayout>(R.id.groupRowLayout).setOnClickListener {
-            val action =
-                FavoritesGroupsFragmentDirections.actionFavoritesGroupsFragmentToFavouriteRecipesFragment(
-                    currentGroup.id
-                )
-            holder.itemView.findNavController().navigate(action)
         }
     }
 

@@ -52,9 +52,9 @@ class DetailsActivity : AppCompatActivity() {
         fragments.add(InstructionsFragment())
 
         val titles = ArrayList<String>()
-        titles.add("Overview")
-        titles.add("Ingredients")
-        titles.add("Instructions")
+        titles.add(getString(R.string.overview))
+        titles.add(getString(R.string.ingredients))
+        titles.add(getString(R.string.instructions))
 
         val resultBundle = Bundle()
         resultBundle.putParcelable(RECIPE_RESULT_KEY, args.result)
@@ -103,7 +103,7 @@ class DetailsActivity : AppCompatActivity() {
         if (favoritesGroups.isEmpty()) {
             Toast.makeText(
                 this,
-                "You have to create a favorites group.",
+                R.string.add_to_favorites_failed,
                 Toast.LENGTH_SHORT
             ).show()
             return super.onOptionsItemSelected(item)
@@ -111,7 +111,7 @@ class DetailsActivity : AppCompatActivity() {
 
         selected = favoritesGroups[0]
         AlertDialog.Builder(this)
-            .setTitle("Favorites Groups")
+            .setTitle(R.string.choose_favorites_group_alert_title)
             .setItems(favoritesGroups) { _, position ->
                 selected = favoritesGroups[position]
                 val selectedGroup =
@@ -147,7 +147,7 @@ class DetailsActivity : AppCompatActivity() {
             )
         mainViewModel.insertFavoriteRecipe(favoritesEntity)
         changeMenuItemColor(item, R.color.yellow)
-        showSnackBar("Recipe saved.")
+        showSnackBar(getString(R.string.recipe_saved_snack_message))
         recipeSaved = true
     }
 
@@ -160,7 +160,7 @@ class DetailsActivity : AppCompatActivity() {
             )
         mainViewModel.deleteFavoriteRecipe(favoritesEntity)
         changeMenuItemColor(item, R.color.mediumGray)
-        showSnackBar("Removed from Favorites.")
+        showSnackBar(getString(R.string.removed_from_favorites_snack_bar))
         recipeSaved = false
     }
 
@@ -169,7 +169,7 @@ class DetailsActivity : AppCompatActivity() {
             binding.detailLayout,
             message,
             Snackbar.LENGTH_SHORT
-        ).setAction("Okay") {}
+        ).setAction(R.string.okay) {}
             .show()
     }
 

@@ -6,6 +6,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
 
 class FavoriteRecipesBinding {
 
@@ -13,13 +14,19 @@ class FavoriteRecipesBinding {
 
         @BindingAdapter("setVisibility")
         @JvmStatic
-        fun <T> setVisibility(view: View, listOfEntities: List<T>?){
-            when(view) {
+        fun setVisibility(view: View, itemCount: Int) {
+            view.isInvisible = itemCount > 0
+        }
+
+        @BindingAdapter("setVisibilityGroups")
+        @JvmStatic
+        fun setVisibilityGroups(view: View, favoritesEntity: List<FavoritesGroupsEntity>?) {
+            when (view) {
                 is RecyclerView -> {
-                    val dataCheck = listOfEntities.isNullOrEmpty()
+                    val dataCheck = favoritesEntity.isNullOrEmpty()
                     view.isInvisible = dataCheck
                 }
-                else -> view.isVisible = listOfEntities.isNullOrEmpty()
+                else -> view.isVisible = favoritesEntity.isNullOrEmpty()
             }
         }
 

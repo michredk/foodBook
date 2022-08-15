@@ -5,6 +5,10 @@
 
     <data>
         <variable
+            name="itemCount"
+            type="Integer" />
+
+        <variable
             name="mainViewModel"
             type="com.example.spoonacularapp.ui.main.MainViewModel" />
     </data>
@@ -12,13 +16,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         tools:context=".ui.main.fragments.favorites.FavoriteRecipesFragment">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favoriteRecipes_RecyclerView"
-            setGroup="@{}"
-            setVisibility="@{mainViewModel.readFavoriteRecipes}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
@@ -31,12 +34,11 @@
 
         <ImageView
             android:id="@+id/noData_imageView"
-            setVisibility="@{mainViewModel.readFavoriteRecipes}"
+            setVisibility="@{itemCount}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="0.5"
             android:src="@drawable/ic_menu_book"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -46,7 +48,7 @@
 
         <TextView
             android:id="@+id/noData_textView"
-            setVisibility="@{mainViewModel.readFavoriteRecipes}"
+            setVisibility="@{itemCount}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -54,7 +56,6 @@
             android:text="@string/favorites_group_is_empty"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/noData_imageView"
             app:layout_constraintStart_toStartOf="@+id/noData_imageView"
             app:layout_constraintTop_toBottomOf="@+id/noData_imageView" />

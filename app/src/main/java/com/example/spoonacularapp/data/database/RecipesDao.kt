@@ -27,11 +27,14 @@ interface RecipesDao {
     @Query("SELECT * FROM favorites_groups_table ORDER BY id ASC")
     fun readFavoritesGroups(): Flow<List<FavoritesGroupsEntity>>
 
-    @Delete
-    suspend fun deleteFavoritesGroup(favoritesGroupsEntity: FavoritesGroupsEntity)
+    @Query("SELECT * FROM favorites_groups_table WHERE id = :id")
+    fun readFavoritesGroupById(id: Int): FavoritesGroupsEntity
 
-//    @Query("DELETE FROM favorite_recipes_table WHERE groupId = id")
-//    suspend fun deleteAllFavoriteRecipesFromGroup(favoritesGroupsEntity: FavoritesGroupsEntity)
+    @Query("DELETE FROM favorite_recipes_table WHERE groupId = :id")
+    suspend fun deleteFavoriteRecipesByGroupId(id: Int)
+
+    @Query("DELETE FROM favorites_groups_table WHERE id = :id")
+    suspend fun deleteFavoritesGroup(id: Int)
 
     @Delete
     suspend fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity)

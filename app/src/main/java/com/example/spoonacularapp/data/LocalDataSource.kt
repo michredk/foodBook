@@ -23,6 +23,10 @@ class LocalDataSource @Inject constructor(
         return recipesDao.readFavoritesGroups()
     }
 
+    fun readGroupById(id: Int): FavoritesGroupsEntity {
+        return recipesDao.readFavoritesGroupById(id)
+    }
+
     suspend fun insertRecipes(recipesEntity: RecipesEntity){
         recipesDao.insertRecipes(recipesEntity)
     }
@@ -39,9 +43,9 @@ class LocalDataSource @Inject constructor(
         recipesDao.deleteFavoriteRecipe(favoritesEntity)
     }
 
-    suspend fun deleteFavoritesGroup(favoritesGroupsEntity: FavoritesGroupsEntity){
-//        repository.local.deleteAllFavoriteRecipesFromGroup(favoritesGroupsEntity)
-        recipesDao.deleteFavoritesGroup(favoritesGroupsEntity)
+    suspend fun deleteFavoritesGroup(favoritesGroupId: Int){
+        recipesDao.deleteFavoriteRecipesByGroupId(favoritesGroupId)
+        recipesDao.deleteFavoritesGroup(favoritesGroupId)
     }
 
     suspend fun deleteAllFavoriteRecipes() {

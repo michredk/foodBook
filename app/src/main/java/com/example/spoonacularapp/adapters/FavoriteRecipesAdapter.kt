@@ -1,5 +1,7 @@
 package com.example.spoonacularapp.adapters
 
+import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +21,8 @@ import com.google.android.material.snackbar.Snackbar
 
 class FavoriteRecipesAdapter(
     private val requireActivity: FragmentActivity,
-    private val mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel,
+    private val groupColor: String
 ) : RecyclerView.Adapter<FavoriteRecipesAdapter.MyViewHolder>(),
     ActionMode.Callback {
 
@@ -57,6 +60,9 @@ class FavoriteRecipesAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         myViewHolders.add(holder)
         rootView = holder.itemView.rootView
+
+        clickAnimationForCard(holder)
+
         val currentRecipe = favoriteRecipes[position]
         holder.bind(currentRecipe)
         saveItemStateOnScroll(currentRecipe, holder)
@@ -90,39 +96,46 @@ class FavoriteRecipesAdapter(
             }
     }
 
+    private fun clickAnimationForCard(holder: MyViewHolder) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val attrs = intArrayOf(android.R.attr.selectableItemBackgroundBorderless)
+            val typedArray = holder.itemView.context.obtainStyledAttributes(attrs)
+            val selectableItemBackground = typedArray.getResourceId(0, 0)
+            typedArray.recycle()
+            holder.itemView.isClickable = true
+            holder.itemView.isFocusable = true
+            holder.itemView.foreground =
+                holder.itemView.context.getDrawable(selectableItemBackground)
+        }
+    }
+
     private fun saveItemStateOnScroll(currentRecipe: FavoritesEntity, holder: MyViewHolder) {
         if (selectedRecipes.contains(currentRecipe)) {
             changeRecipeStyle(
                 holder,
-                R.color.selectedCardBackgroundColor,
                 R.color.selectedStrokeColor
             )
         } else {
-            changeRecipeStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
+            changeRecipeStyle(holder, R.color.strokeColor)
         }
     }
 
     private fun applySelection(holder: MyViewHolder, currentRecipe: FavoritesEntity) {
         if (selectedRecipes.contains(currentRecipe)) {
             selectedRecipes.remove(currentRecipe)
-            changeRecipeStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
+            changeRecipeStyle(holder, R.color.strokeColor)
             applyActionModeTitle()
         } else {
             selectedRecipes.add(currentRecipe)
             changeRecipeStyle(
                 holder,
-                R.color.selectedCardBackgroundColor,
                 R.color.selectedStrokeColor
             )
             applyActionModeTitle()
         }
     }
 
-    private fun changeRecipeStyle(holder: MyViewHolder, backgroundColor: Int, strokeColor: Int) {
-        holder.itemView.findViewById<ConstraintLayout>(R.id.favoriteRecipesRowLayout)
-            .setBackgroundColor(
-                ContextCompat.getColor(requireActivity, backgroundColor)
-            )
+    private fun changeRecipeStyle(holder: MyViewHolder, strokeColor: Int) {
         holder.itemView.findViewById<MaterialCardView>(R.id.favorite_row_cardView).strokeColor =
             ContextCompat.getColor(requireActivity, strokeColor)
     }
@@ -149,7 +162,7 @@ class FavoriteRecipesAdapter(
     override fun onCreateActionMode(actionMode: ActionMode?, menu: Menu?): Boolean {
         actionMode?.menuInflater?.inflate(R.menu.favorites_contextual_menu, menu)
         mActionMode = actionMode!!
-        applyStatusBarColor(R.color.contextualStatusBarColor)
+        requireActivity.window.statusBarColor = Color.parseColor(groupColor)
         return true
     }
 
@@ -177,7 +190,7 @@ class FavoriteRecipesAdapter(
 
     override fun onDestroyActionMode(actionMode: ActionMode?) {
         myViewHolders.forEach { holder ->
-            changeRecipeStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
+            changeRecipeStyle(holder, R.color.strokeColor)
         }
         multiSelection = false
         selectedRecipes.clear()

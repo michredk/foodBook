@@ -28,10 +28,12 @@ class FavoritesGroupsFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentFavouritesGroupsBinding.inflate(layoutInflater, container, false)
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
 
         setupRecyclerView(binding.favoriteGroupsRecyclerView)
 
-        binding.addGroupFab.setOnClickListener{
+        binding.addGroupFab.setOnClickListener {
             findNavController().navigate(R.id.action_favoritesGroupsFragment_to_favoritesGroupsBottomSheet)
         }
 

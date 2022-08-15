@@ -32,6 +32,9 @@
         <argument
             android:name="groupId"
             app:argType="integer" />
+        <argument
+            android:name="color"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"

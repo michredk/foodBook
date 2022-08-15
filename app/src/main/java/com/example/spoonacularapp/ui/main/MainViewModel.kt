@@ -27,7 +27,9 @@ class MainViewModel @Inject constructor(
 
     val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
     val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
+
     val readFavoritesGroups: LiveData<List<FavoritesGroupsEntity>> = repository.local.readFavoritesGroups().asLiveData()
+    fun readGroupById(id: Int): FavoritesGroupsEntity  = repository.local.readGroupById(id)
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
@@ -49,9 +51,9 @@ class MainViewModel @Inject constructor(
             repository.local.deleteFavoriteRecipe(favoritesEntity)
         }
 
-    fun deleteFavoritesGroup(favoritesGroupsEntity: FavoritesGroupsEntity) =
+    fun deleteFavoritesGroup(favoritesGroupId: Int) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.local.deleteFavoritesGroup(favoritesGroupsEntity)
+            repository.local.deleteFavoritesGroup(favoritesGroupId)
         }
 
     private fun deleteAllFavoriteRecipes() =

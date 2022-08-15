@@ -1,6 +1,7 @@
 package com.example.spoonacularapp.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -33,6 +34,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.calendarFragment
             )
         )
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.favouriteRecipesFragment -> binding.bottomNavigationView.visibility = View.GONE
+                else -> binding.bottomNavigationView.visibility = View.VISIBLE
+            }
+        }
+
         binding.bottomNavigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
