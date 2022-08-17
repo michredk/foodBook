@@ -50,4 +50,9 @@
         <item name="android:colorAccent">@color/colorSecondary</item>
     </style>
 
+    <style name="MaterialDatePickerCustom" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/colorSecondary</item>
+        <item name="colorAccent">@color/colorSecondary</item>
+    </style>
+
 </resources>

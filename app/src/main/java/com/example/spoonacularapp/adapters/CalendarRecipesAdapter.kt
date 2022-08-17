@@ -12,7 +12,7 @@ import com.example.spoonacularapp.R
 import com.example.spoonacularapp.data.database.entities.CalendarEntity
 import com.example.spoonacularapp.databinding.CalendarRecipeRowLayoutBinding
 import com.example.spoonacularapp.ui.main.MainViewModel
-import com.example.spoonacularapp.ui.main.fragments.favorites.FavoriteRecipesFragmentDirections
+import com.example.spoonacularapp.ui.main.fragments.calendar.CalendarFragmentDirections
 import com.example.spoonacularapp.util.RecipesDiffUtil
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
@@ -71,7 +71,7 @@ class CalendarRecipesAdapter(
                     applySelection(holder, currentRecipe)
                 } else {
                     val action =
-                        FavoriteRecipesFragmentDirections.actionFavouriteRecipesFragmentToDetailsActivity(
+                        CalendarFragmentDirections.actionCalendarFragmentToDetailsActivity(
                             currentRecipe.result
                         )
                     holder.itemView.findNavController().navigate(action)
@@ -159,7 +159,7 @@ class CalendarRecipesAdapter(
     override fun onCreateActionMode(actionMode: ActionMode?, menu: Menu?): Boolean {
         actionMode?.menuInflater?.inflate(R.menu.calendar_contextual_menu, menu)
         mActionMode = actionMode!!
-        requireActivity.window.statusBarColor = R.color.actionBarBackgroundColor
+        applyStatusBarColor(R.color.colorSecondary)
         return true
     }
 

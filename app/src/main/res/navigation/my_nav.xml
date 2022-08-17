@@ -34,13 +34,17 @@
             app:argType="integer" />
         <argument
             android:name="color"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.spoonacularapp.ui.main.fragments.calendar.CalendarFragment"
         android:label="Calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendarFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
+    </fragment>
     <dialog
         android:id="@+id/recipesBottomSheet"
         android:name="com.example.spoonacularapp.ui.main.fragments.recipes.bottomsheet.RecipesBottomSheet"

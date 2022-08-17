@@ -1,6 +1,7 @@
 package com.example.spoonacularapp.ui.details
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.navArgs
 import com.example.spoonacularapp.R
 import com.example.spoonacularapp.adapters.PagerAdapter
+import com.example.spoonacularapp.data.database.entities.CalendarEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
 import com.example.spoonacularapp.databinding.ActivityDetailsBinding
@@ -24,6 +26,7 @@ import com.example.spoonacularapp.util.Constants.Companion.RECIPE_RESULT_KEY
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
@@ -94,6 +97,8 @@ class DetailsActivity : AppCompatActivity() {
                 return super.onOptionsItemSelected(item)
         } else if (item.itemId == R.id.save_to_favorites_menu && recipeSaved) {
             removeFromFavorites(item)
+        } else if (item.itemId == R.id.save_to_calendar_menu) {
+            displayDatePickerDialog()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -175,5 +180,30 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun changeMenuItemColor(item: MenuItem, color: Int) {
         item.icon.setTint(ContextCompat.getColor(this, color))
+    }
+
+    private fun displayDatePickerDialog() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(this, { view, y, m, d ->
+            saveToCalendar(y.toString() + m.toString() + d.toString())
+        },year, month, day)
+
+        datePickerDialog.show()
+    }
+
+    private fun saveToCalendar(selectedDate: String) {
+        val calendarEntity =
+            CalendarEntity(
+                0,
+                args.result,
+                selectedDate
+            )
+        mainViewModel.insertRecipeToCalendar(calendarEntity)
+        showSnackBar(getString(R.string.saved_to_calendar))
+        recipeSaved = true
     }
 }

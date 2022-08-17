@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.fragments.recipes.RecipesFragment"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimary">
 
         <com.todkars.shimmer.ShimmerRecyclerView
             android:id="@+id/recycler_view"

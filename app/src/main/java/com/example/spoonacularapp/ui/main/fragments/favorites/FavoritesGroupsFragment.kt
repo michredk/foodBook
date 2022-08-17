@@ -39,6 +39,7 @@ class FavoritesGroupsFragment : Fragment() {
 
         mainViewModel.readFavoritesGroups.observe(viewLifecycleOwner) { groupEntity ->
             mAdapter.setData(groupEntity)
+            binding.itemCount = mAdapter.itemCount
         }
 
         return binding.root

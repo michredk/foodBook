@@ -1,7 +1,7 @@
 package com.example.spoonacularapp.bindingadapters
 
-import android.graphics.Color
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
@@ -12,6 +12,19 @@ import com.example.spoonacularapp.data.database.entities.FavoritesEntity
 class FavoriteRecipesBinding {
 
     companion object {
+
+        @BindingAdapter("setVisibilityByItemCount")
+        @JvmStatic
+        fun setVisibilitySimple(
+            view: View,
+            itemCount: Int
+        ){
+            when(view){
+                is RecyclerView ->
+                    view.isVisible = itemCount > 0
+                else -> view.isVisible = itemCount == 0
+            }
+        }
 
         @BindingAdapter("setVisibility", "setData", "setGroupId", requireAll = false)
         @JvmStatic
@@ -38,8 +51,8 @@ class FavoriteRecipesBinding {
 
         @BindingAdapter("parseBackgroundColor")
         @JvmStatic
-        fun parseBackgroundColor(view: View, color: String) {
-            view.setBackgroundColor(Color.parseColor(color))
+        fun parseBackgroundColor(view: View, color: Int) {
+            view.setBackgroundColor(ContextCompat.getColor(view.context, color))
         }
 
     }

@@ -42,7 +42,7 @@ class FavoritesGroupsBottomSheet : BottomSheetDialogFragment() {
 
         binding.groupNameEditText.addTextChangedListener(textWatcher)
 
-        binding.colorChipGroup.setOnCheckedStateChangeListener { group, selectedChipId ->
+        binding.colorChipGroup.setOnCheckedStateChangeListener { _, selectedChipId ->
             selectedChip = selectedChipId[0]
         }
 
@@ -69,22 +69,22 @@ class FavoritesGroupsBottomSheet : BottomSheetDialogFragment() {
         findNavController().navigate(R.id.action_favoritesGroupsBottomSheet_to_favoritesGroupsFragment)
     }
 
-    private fun selectedChipToColor(selectedChip: Int): String {
-        if (selectedChip == 0 || selectedChip == binding.redChip.id) return resources.getString(R.color.red)
-        if (selectedChip == binding.orangeChip.id) return resources.getString(R.color.orange)
-        if (selectedChip == binding.yellowChip.id) return resources.getString(R.color.yellow)
-        if (selectedChip == binding.greenChip.id) return resources.getString(R.color.themeGreen)
-        if (selectedChip == binding.darkGreenChip.id) return resources.getString(R.color.themeGreenDark)
-        if (selectedChip == binding.marineChip.id) return resources.getString(R.color.marine)
-        return if (selectedChip == binding.blueChip.id) resources.getString(R.color.blue)
-        else resources.getString(R.color.colorPrimary)
+    private fun selectedChipToColor(selectedChip: Int): Int {
+        if (selectedChip == 0 || selectedChip == binding.redChip.id) return R.color.red
+        if (selectedChip == binding.orangeChip.id) return R.color.orange
+        if (selectedChip == binding.yellowChip.id) return R.color.yellow
+        if (selectedChip == binding.greenChip.id) return R.color.themeGreen
+        if (selectedChip == binding.darkGreenChip.id) return R.color.themeGreenDark
+        if (selectedChip == binding.marineChip.id) return R.color.marine
+        return if (selectedChip == binding.blueChip.id) R.color.blue
+        else R.color.colorPrimary
     }
 
     private var textWatcher: TextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
         override fun afterTextChanged(s: Editable) {
-            binding.addBtn.isEnabled = (s.toString().trim().length > 1);
+            binding.addBtn.isEnabled = (s.toString().trim().length > 1)
         }
     }
 }

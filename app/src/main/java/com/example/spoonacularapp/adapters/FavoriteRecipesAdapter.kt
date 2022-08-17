@@ -1,8 +1,6 @@
 package com.example.spoonacularapp.adapters
 
-import android.graphics.Color
 import android.os.Build
-import android.util.Log
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -22,7 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 class FavoriteRecipesAdapter(
     private val requireActivity: FragmentActivity,
     private val mainViewModel: MainViewModel,
-    private val groupColor: String
+    private val groupColor: Int
 ) : RecyclerView.Adapter<FavoriteRecipesAdapter.MyViewHolder>(),
     ActionMode.Callback {
 
@@ -113,7 +111,7 @@ class FavoriteRecipesAdapter(
         if (selectedRecipes.contains(currentRecipe)) {
             changeRecipeStyle(
                 holder,
-                R.color.selectedStrokeColor
+                groupColor
             )
         } else {
             changeRecipeStyle(holder, R.color.strokeColor)
@@ -129,15 +127,15 @@ class FavoriteRecipesAdapter(
             selectedRecipes.add(currentRecipe)
             changeRecipeStyle(
                 holder,
-                R.color.selectedStrokeColor
+                groupColor
             )
             applyActionModeTitle()
         }
     }
 
-    private fun changeRecipeStyle(holder: MyViewHolder, strokeColor: Int) {
+    private fun changeRecipeStyle(holder: MyViewHolder, color: Int) {
         holder.itemView.findViewById<MaterialCardView>(R.id.favorite_row_cardView).strokeColor =
-            ContextCompat.getColor(requireActivity, strokeColor)
+            ContextCompat.getColor(requireActivity, color)
     }
 
     private fun applyActionModeTitle() {
@@ -162,7 +160,7 @@ class FavoriteRecipesAdapter(
     override fun onCreateActionMode(actionMode: ActionMode?, menu: Menu?): Boolean {
         actionMode?.menuInflater?.inflate(R.menu.favorites_contextual_menu, menu)
         mActionMode = actionMode!!
-        requireActivity.window.statusBarColor = Color.parseColor(groupColor)
+        applyStatusBarColor(groupColor)
         return true
     }
 
@@ -206,8 +204,7 @@ class FavoriteRecipesAdapter(
             rootView,
             message,
             Snackbar.LENGTH_LONG
-        ).setAction("Undo") {
-            Log.d("addingRemoved", "status before removing: ${previouslyRemovedRecipes.size}")
+        ).setAction(R.string.undo) {
             previouslyRemovedRecipes.forEach {
                 mainViewModel.insertFavoriteRecipe(it)
             }

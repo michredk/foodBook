@@ -23,7 +23,7 @@ class FavoriteRecipesFragment : Fragment() {
     lateinit var binding: FragmentFavoriteRecipesBinding
     private val mainViewModel: MainViewModel by viewModels()
     private val mAdapter: FavoriteRecipesAdapter by lazy {
-        FavoriteRecipesAdapter(requireActivity(), mainViewModel, arguments?.getString("color")!!)
+        FavoriteRecipesAdapter(requireActivity(), mainViewModel, arguments?.getInt("color")!!)
     }
 
     override fun onCreateView(

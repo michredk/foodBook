@@ -9,5 +9,5 @@ class FavoritesGroupsEntity (
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     var name: String,
-    var color: String
+    var color: Int
 )
