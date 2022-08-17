@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.example.spoonacularapp.data.Repository
+import com.example.spoonacularapp.data.database.entities.CalendarEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
 import com.example.spoonacularapp.data.database.entities.RecipesEntity
@@ -27,6 +28,7 @@ class MainViewModel @Inject constructor(
 
     val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
     val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
+    val readCalendarRecipes: LiveData<List<CalendarEntity>> = repository.local.readCalendarRecipes().asLiveData()
 
     val readFavoritesGroups: LiveData<List<FavoritesGroupsEntity>> = repository.local.readFavoritesGroups().asLiveData()
     fun readGroupById(id: Int): FavoritesGroupsEntity  = repository.local.readGroupById(id)
@@ -46,6 +48,11 @@ class MainViewModel @Inject constructor(
             repository.local.insertFavoritesGroup(favoritesGroupsEntity)
         }
 
+    fun insertRecipeToCalendar(calendarEntity: CalendarEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertRecipeToCalendar(calendarEntity)
+        }
+
     fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.deleteFavoriteRecipe(favoritesEntity)
@@ -54,6 +61,11 @@ class MainViewModel @Inject constructor(
     fun deleteFavoritesGroup(favoritesGroupId: Int) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.deleteFavoritesGroup(favoritesGroupId)
+        }
+
+    fun deleteRecipeFromCalendar(calendarEntity: CalendarEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteRecipeFromCalendar(calendarEntity)
         }
 
     private fun deleteAllFavoriteRecipes() =

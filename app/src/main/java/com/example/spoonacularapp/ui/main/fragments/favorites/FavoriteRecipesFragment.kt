@@ -26,8 +26,6 @@ class FavoriteRecipesFragment : Fragment() {
         FavoriteRecipesAdapter(requireActivity(), mainViewModel, arguments?.getString("color")!!)
     }
 
-    private var groupId: Int = 0
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,17 +34,10 @@ class FavoriteRecipesFragment : Fragment() {
         binding = FragmentFavoriteRecipesBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
+        binding.mAdapter = mAdapter
+        binding.groupId = arguments?.getInt("groupId")!!
 
         setupRecyclerView(binding.favoriteRecipesRecyclerView)
-
-        groupId = arguments?.getInt("groupId")!!
-
-        mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) { favoritesEntity ->
-            mAdapter.setData(favoritesEntity.filter {
-                it.groupId == groupId
-            })
-            binding.itemCount = mAdapter.itemCount
-        }
 
         return binding.root
     }
@@ -80,7 +71,7 @@ class FavoriteRecipesFragment : Fragment() {
         AlertDialog.Builder(requireContext())
             .setTitle(R.string.remove_group_alert_title)
             .setPositiveButton(R.string.yes) { _, _ ->
-                mainViewModel.deleteFavoritesGroup(groupId)
+                mainViewModel.deleteFavoritesGroup(binding.groupId!!)
                 findNavController().navigateUp()
                 Toast.makeText(
                     requireContext(),

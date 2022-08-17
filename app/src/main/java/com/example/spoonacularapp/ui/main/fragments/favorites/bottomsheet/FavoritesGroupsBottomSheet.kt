@@ -46,15 +46,7 @@ class FavoritesGroupsBottomSheet : BottomSheetDialogFragment() {
             selectedChip = selectedChipId[0]
         }
 
-        binding.addBtn.setOnClickListener {
-            val favGroup = FavoritesGroupsEntity(
-                0,
-                binding.groupNameEditText.text.toString(),
-                selectedChipToColor(selectedChip)
-            )
-            mainViewModel.insertFavoritesGroup(favGroup)
-            findNavController().navigate(R.id.action_favoritesGroupsBottomSheet_to_favoritesGroupsFragment)
-        }
+        binding.addBtn.setOnClickListener(addBtnClick())
 
         return binding.root
     }
@@ -67,6 +59,16 @@ class FavoritesGroupsBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
+    private fun addBtnClick(): (View) -> Unit = {
+        val favGroup = FavoritesGroupsEntity(
+            0,
+            binding.groupNameEditText.text.toString(),
+            selectedChipToColor(selectedChip)
+        )
+        mainViewModel.insertFavoritesGroup(favGroup)
+        findNavController().navigate(R.id.action_favoritesGroupsBottomSheet_to_favoritesGroupsFragment)
+    }
+
     private fun selectedChipToColor(selectedChip: Int): String {
         if (selectedChip == 0 || selectedChip == binding.redChip.id) return resources.getString(R.color.red)
         if (selectedChip == binding.orangeChip.id) return resources.getString(R.color.orange)
@@ -74,8 +76,8 @@ class FavoritesGroupsBottomSheet : BottomSheetDialogFragment() {
         if (selectedChip == binding.greenChip.id) return resources.getString(R.color.themeGreen)
         if (selectedChip == binding.darkGreenChip.id) return resources.getString(R.color.themeGreenDark)
         if (selectedChip == binding.marineChip.id) return resources.getString(R.color.marine)
-        if (selectedChip == binding.blueChip.id) return resources.getString(R.color.blue)
-        else return resources.getString(R.color.colorPrimary)
+        return if (selectedChip == binding.blueChip.id) resources.getString(R.color.blue)
+        else resources.getString(R.color.colorPrimary)
     }
 
     private var textWatcher: TextWatcher = object : TextWatcher {

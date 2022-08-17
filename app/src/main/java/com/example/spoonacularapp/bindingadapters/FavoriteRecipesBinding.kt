@@ -6,33 +6,39 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
+import com.example.spoonacularapp.adapters.FavoriteRecipesAdapter
+import com.example.spoonacularapp.data.database.entities.FavoritesEntity
 
 class FavoriteRecipesBinding {
 
-    companion object{
+    companion object {
 
-        @BindingAdapter("setVisibility")
+        @BindingAdapter("setVisibility", "setData", "setGroupId", requireAll = false)
         @JvmStatic
-        fun setVisibility(view: View, itemCount: Int) {
-            view.isInvisible = itemCount > 0
-        }
-
-        @BindingAdapter("setVisibilityGroups")
-        @JvmStatic
-        fun setVisibilityGroups(view: View, favoritesEntity: List<FavoritesGroupsEntity>?) {
+        fun setVisibility(
+            view: View,
+            favoritesEntity: List<FavoritesEntity>?,
+            mAdapter: FavoriteRecipesAdapter?,
+            groupId: Int
+        ) {
+            val filtered = favoritesEntity?.filter { it.groupId == groupId }
             when (view) {
                 is RecyclerView -> {
-                    val dataCheck = favoritesEntity.isNullOrEmpty()
+                    val dataCheck = filtered.isNullOrEmpty()
                     view.isInvisible = dataCheck
+                    if (!dataCheck) {
+                        filtered?.let {
+                            mAdapter?.setData(it)
+                        }
+                    }
                 }
-                else -> view.isVisible = favoritesEntity.isNullOrEmpty()
+                else -> view.isVisible = filtered.isNullOrEmpty()
             }
         }
 
         @BindingAdapter("parseBackgroundColor")
         @JvmStatic
-        fun parseBackgroundColor(view: View, color: String){
+        fun parseBackgroundColor(view: View, color: String) {
             view.setBackgroundColor(Color.parseColor(color))
         }
 

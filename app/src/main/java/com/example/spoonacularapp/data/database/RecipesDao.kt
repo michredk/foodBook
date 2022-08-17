@@ -1,6 +1,7 @@
 package com.example.spoonacularapp.data.database
 
 import androidx.room.*
+import com.example.spoonacularapp.data.database.entities.CalendarEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
 import com.example.spoonacularapp.data.database.entities.RecipesEntity
@@ -18,6 +19,9 @@ interface RecipesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavoritesGroup(favoritesGroupsEntity: FavoritesGroupsEntity)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertRecipeToCalendar(calendarEntity: CalendarEntity)
+
     @Query("SELECT * FROM recipes_table ORDER BY id ASC")
     fun readRecipes(): Flow<List<RecipesEntity>>
 
@@ -26,6 +30,9 @@ interface RecipesDao {
 
     @Query("SELECT * FROM favorites_groups_table ORDER BY id ASC")
     fun readFavoritesGroups(): Flow<List<FavoritesGroupsEntity>>
+
+    @Query("SELECT * FROM calendar_recipes_table ORDER BY id ASC")
+    fun readCalendarRecipes(): Flow<List<CalendarEntity>>
 
     @Query("SELECT * FROM favorites_groups_table WHERE id = :id")
     fun readFavoritesGroupById(id: Int): FavoritesGroupsEntity
@@ -38,6 +45,9 @@ interface RecipesDao {
 
     @Delete
     suspend fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity)
+
+    @Delete
+    suspend fun deleteRecipeFromCalendar(calendarEntity: CalendarEntity)
 
     @Query("DELETE FROM favorite_recipes_table")
     suspend fun deleteAllFavoriteRecipes()

@@ -72,4 +72,7 @@
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
     <string name="favorites_group_deleted">Favorites group deleted.</string>
+    <string name="undo">Undo</string>
+    <string name="calendar_today_is_empty">Calendar is empty.</string>
+    <string name="save_to_calendar">Save to calendar</string>
 </resources>

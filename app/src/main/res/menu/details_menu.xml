@@ -11,4 +11,12 @@
         app:showAsAction="ifRoom"
         tools:targetApi="o" />
 
+    <item
+        android:id="@+id/save_to_calendar_menu"
+        android:icon="@drawable/ic_calendar"
+        app:iconTint="@color/darkGray"
+        android:title="@string/save_to_calendar"
+        app:showAsAction="ifRoom"
+        tools:targetApi="o" />
+
 </menu>

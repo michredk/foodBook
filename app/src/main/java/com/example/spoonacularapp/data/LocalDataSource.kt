@@ -1,6 +1,7 @@
 package com.example.spoonacularapp.data
 
 import com.example.spoonacularapp.data.database.RecipesDao
+import com.example.spoonacularapp.data.database.entities.CalendarEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
 import com.example.spoonacularapp.data.database.entities.RecipesEntity
@@ -23,6 +24,10 @@ class LocalDataSource @Inject constructor(
         return recipesDao.readFavoritesGroups()
     }
 
+    fun readCalendarRecipes(): Flow<List<CalendarEntity>>{
+        return recipesDao.readCalendarRecipes()
+    }
+
     fun readGroupById(id: Int): FavoritesGroupsEntity {
         return recipesDao.readFavoritesGroupById(id)
     }
@@ -39,6 +44,10 @@ class LocalDataSource @Inject constructor(
         recipesDao.insertFavoritesGroup(favoritesGroupsEntity)
     }
 
+    suspend fun insertRecipeToCalendar(calendarEntity: CalendarEntity){
+        recipesDao.insertRecipeToCalendar(calendarEntity)
+    }
+
     suspend fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) {
         recipesDao.deleteFavoriteRecipe(favoritesEntity)
     }
@@ -46,6 +55,10 @@ class LocalDataSource @Inject constructor(
     suspend fun deleteFavoritesGroup(favoritesGroupId: Int){
         recipesDao.deleteFavoriteRecipesByGroupId(favoritesGroupId)
         recipesDao.deleteFavoritesGroup(favoritesGroupId)
+    }
+
+    suspend fun deleteRecipeFromCalendar(calendarEntity: CalendarEntity){
+        recipesDao.deleteRecipeFromCalendar(calendarEntity)
     }
 
     suspend fun deleteAllFavoriteRecipes() {
