@@ -10,7 +10,7 @@ import com.example.spoonacularapp.data.database.entities.RecipesEntity
 
 @Database(
     entities = [RecipesEntity::class, FavoritesEntity::class, FavoritesGroupsEntity::class, CalendarEntity::class],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 @TypeConverters(RecipesTypeConverter::class)

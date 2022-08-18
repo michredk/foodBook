@@ -10,5 +10,5 @@ class CalendarEntity (
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     var result: Result,
-    var date: String
+    var date: Int
 )

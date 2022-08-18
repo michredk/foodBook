@@ -20,5 +20,4 @@ class PagerAdapter (
         return fragments[position]
     }
 
-
 }

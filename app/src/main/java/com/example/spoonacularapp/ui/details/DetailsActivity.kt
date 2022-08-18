@@ -188,14 +188,16 @@ class DetailsActivity : AppCompatActivity() {
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(this, { view, y, m, d ->
-            saveToCalendar(y.toString() + m.toString() + d.toString())
-        },year, month, day)
+        val datePickerDialog = DatePickerDialog(this, { _, y, m, d ->
+            val dateString = String.format("%d%02d%02d", y, m + 1, d)
+            saveToCalendar(dateString.toInt())
+            Log.d("dateSave", "zapisanie do bazy: $dateString")
+        }, year, month, day)
 
         datePickerDialog.show()
     }
 
-    private fun saveToCalendar(selectedDate: String) {
+    private fun saveToCalendar(selectedDate: Int) {
         val calendarEntity =
             CalendarEntity(
                 0,

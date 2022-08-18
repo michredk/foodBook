@@ -76,4 +76,5 @@
     <string name="calendar_today_is_empty">Calendar is empty.</string>
     <string name="save_to_calendar">Save to calendar</string>
     <string name="saved_to_calendar">Recipe saved to calendar.</string>
+    <string name="get_shopping_list">Get shopping list</string>
 </resources>

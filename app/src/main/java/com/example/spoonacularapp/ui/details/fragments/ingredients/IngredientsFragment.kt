@@ -19,7 +19,7 @@ class IngredientsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentIngredientsBinding.inflate(layoutInflater, container, false)
 
@@ -28,7 +28,6 @@ class IngredientsFragment : Fragment() {
 
         setupRecyclerView()
         myBundle?.extendedIngredients?.let { mAdapter.setData(it) }
-
 
         return binding.root
     }

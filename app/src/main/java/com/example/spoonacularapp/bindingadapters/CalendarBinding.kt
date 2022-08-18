@@ -18,7 +18,7 @@ class CalendarBinding {
             view: View,
             calendarEntities: List<CalendarEntity>?,
             mAdapter: CalendarRecipesAdapter?,
-            date: String?
+            date: Int?
         ) {
             val filtered = calendarEntities?.filter { it.date == date }
             when (view) {
