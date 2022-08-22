@@ -1,2 +1,15 @@
 # SpoonacularApp
 A recipe app that uses the Spoonacular API.
+![alt text](screenshots/1.jpg "Title")
+![alt text](screenshots/2.jpg "Title")
+![alt text](screenshots/3.jpg "Title")
+![alt text](screenshots/4.jpg "Title")
+![alt text](screenshots/5.jpg "Title")
+![alt text](screenshots/6.jpg "Title")
+![alt text](screenshots/7.jpg "Title")
+![alt text](screenshots/8.jpg "Title")
+![alt text](screenshots/9.jpg "Title")
+![alt text](screenshots/10.jpg "Title")
+![alt text](screenshots/12.jpg "Title")
+![alt text](screenshots/11.jpg "Title")
+![alt text](screenshots/13.jpg "Title")

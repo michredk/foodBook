@@ -157,6 +157,7 @@ class CalendarRecipesAdapter(
     }
 
     override fun onCreateActionMode(actionMode: ActionMode?, menu: Menu?): Boolean {
+        previouslyRemovedRecipes.clear()
         actionMode?.menuInflater?.inflate(R.menu.calendar_contextual_menu, menu)
         mActionMode = actionMode!!
         applyStatusBarColor(R.color.colorSecondary)
