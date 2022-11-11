@@ -1,4 +1,4 @@
-# SpoonacularApp
+# FoodfoodApp
 A recipe app that uses the Spoonacular API.  
 
 Recipes fragment:  
