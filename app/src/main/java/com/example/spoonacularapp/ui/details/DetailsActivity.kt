@@ -1,7 +1,6 @@
 package com.example.spoonacularapp.ui.details
 
 import android.app.AlertDialog
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -23,9 +22,11 @@ import com.example.spoonacularapp.ui.details.fragments.instructions.Instructions
 import com.example.spoonacularapp.ui.details.fragments.overview.OverviewFragment
 import com.example.spoonacularapp.ui.main.MainViewModel
 import com.example.spoonacularapp.util.Constants.Companion.RECIPE_RESULT_KEY
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -188,24 +189,26 @@ class DetailsActivity : AppCompatActivity() {
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(this, { _, y, m, d ->
-            val dateString = String.format("%d%02d%02d", y, m + 1, d)
-            saveToCalendar(dateString.toInt())
-            Log.d("dateSave", "zapisanie do bazy: $dateString")
-        }, year, month, day)
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(getString(R.string.save_to_calendar))
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .build()
+        datePicker.addOnPositiveButtonClickListener {
+            saveToCalendar(it)
+        }
+        datePicker.show(this.supportFragmentManager, datePicker.toString())
 
-        datePickerDialog.show()
     }
 
-    private fun saveToCalendar(selectedDate: Int) {
+    private fun saveToCalendar(selectedDate: Long) {
+        val date: Int = SimpleDateFormat("yyyyMMdd").format(Date(selectedDate)).toInt()
         val calendarEntity =
             CalendarEntity(
                 0,
                 args.result,
-                selectedDate
+                date
             )
         mainViewModel.insertRecipeToCalendar(calendarEntity)
         showSnackBar(getString(R.string.saved_to_calendar))
-        recipeSaved = true
     }
 }

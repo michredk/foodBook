@@ -1,18 +1,16 @@
 package com.example.spoonacularapp.data
 
-import com.example.spoonacularapp.data.network.FoodRecipesApi
+import android.util.Log
+import com.example.spoonacularapp.data.network.RecipesApi
 import com.example.spoonacularapp.model.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(
-    private val foodRecipesApi: FoodRecipesApi
+    private val recipesApi: RecipesApi
 ){
     suspend fun getRecipes(queries: Map<String, String>): Response<FoodRecipe> {
-        return foodRecipesApi.getRecipes(queries)
-    }
-
-    suspend fun searchRecipes(searchQuery: Map<String, String>): Response<FoodRecipe> {
-        return foodRecipesApi.searchRecipes(searchQuery)
+        Log.d("queries", queries.toString())
+        return recipesApi.getRecipes(queries)
     }
 }

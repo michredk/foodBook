@@ -10,7 +10,15 @@ class NetworkListener: ConnectivityManager.NetworkCallback() {
 
     private val isNetworkAvailable = MutableStateFlow(false)
 
-    fun checkNetworkAvailability(context: Context): MutableStateFlow<Boolean>{
+    override fun onAvailable(network: Network) {
+        isNetworkAvailable.value = true
+    }
+
+    override fun onLost(network: Network) {
+        isNetworkAvailable.value = false
+    }
+
+    fun checkNetwork(context: Context): MutableStateFlow<Boolean>{
         val connectivityManager
         = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         connectivityManager.registerDefaultNetworkCallback(this)
@@ -40,13 +48,5 @@ class NetworkListener: ConnectivityManager.NetworkCallback() {
                 isNetworkAvailable
             }
         }
-    }
-
-    override fun onAvailable(network: Network) {
-        isNetworkAvailable.value = true
-    }
-
-    override fun onLost(network: Network) {
-        isNetworkAvailable.value = false
     }
 }

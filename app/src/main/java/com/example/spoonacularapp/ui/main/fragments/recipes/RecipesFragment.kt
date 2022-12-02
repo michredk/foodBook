@@ -22,8 +22,10 @@ import com.example.spoonacularapp.ui.main.MainViewModel
 import com.example.spoonacularapp.util.NetworkListener
 import com.example.spoonacularapp.util.NetworkResult
 import com.example.spoonacularapp.util.observeOnce
+import com.example.spoonacularapp.util.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener {
@@ -62,18 +64,18 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
 
         lifecycleScope.launch{
             networkListener = NetworkListener()
-            networkListener.checkNetworkAvailability(requireContext())
+            networkListener.checkNetwork(requireContext())
                 .collect { status ->
                     Log.d("NetworkListener", status.toString())
                     recipesViewModel.networkStatus = status
                     recipesViewModel.showNetworkStatus()
                     readDatabase()
                 }
-        }
+            }
 
         binding.recipesFab.setOnClickListener{
             if(recipesViewModel.networkStatus){
-                findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+                findNavController().safeNavigate(RecipesFragmentDirections.actionRecipesFragmentToRecipesBottomSheet())
             } else {
                 recipesViewModel.showNetworkStatus()
             }
@@ -92,7 +94,6 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
                 if(database.isNotEmpty() && !args.backFromBottomSheet){
-                    Log.d("RecipesFragment", "readDatabase called!")
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
@@ -121,6 +122,9 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
 
     private fun handleApiDataResponse(response: NetworkResult<FoodRecipe>) {
         when (response) {
+            is NetworkResult.Loading -> {
+                showShimmerEffect()
+            }
             is NetworkResult.Success -> {
                 hideShimmerEffect()
                 response.data?.let { mAdapter.setData(it) }
@@ -134,9 +138,6 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
                     response.message.toString(),
                     Toast.LENGTH_SHORT
                 ).show()
-            }
-            is NetworkResult.Loading -> {
-                showShimmerEffect()
             }
         }
     }

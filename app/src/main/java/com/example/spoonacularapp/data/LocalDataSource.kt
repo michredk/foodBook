@@ -1,6 +1,8 @@
 package com.example.spoonacularapp.data
 
-import com.example.spoonacularapp.data.database.RecipesDao
+import com.example.spoonacularapp.data.database.dao.CalendarDao
+import com.example.spoonacularapp.data.database.dao.FavoritesDao
+import com.example.spoonacularapp.data.database.dao.RecipesDao
 import com.example.spoonacularapp.data.database.entities.CalendarEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesEntity
 import com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity
@@ -9,7 +11,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
-    private val recipesDao: RecipesDao
+    private val recipesDao: RecipesDao,
+    private val favoritesDao: FavoritesDao,
+    private val calendarDao: CalendarDao
 ) {
 
     fun readRecipes(): Flow<List<RecipesEntity>> {
@@ -17,19 +21,15 @@ class LocalDataSource @Inject constructor(
     }
 
     fun readFavoriteRecipes(): Flow<List<FavoritesEntity>> {
-        return recipesDao.readFavoriteRecipes()
+        return favoritesDao.readFavoriteRecipes()
     }
 
     fun readFavoritesGroups(): Flow<List<FavoritesGroupsEntity>>{
-        return recipesDao.readFavoritesGroups()
+        return favoritesDao.readFavoritesGroups()
     }
 
     fun readCalendarRecipes(): Flow<List<CalendarEntity>>{
-        return recipesDao.readCalendarRecipes()
-    }
-
-    fun readGroupById(id: Int): FavoritesGroupsEntity {
-        return recipesDao.readFavoritesGroupById(id)
+        return calendarDao.readCalendarRecipes()
     }
 
     suspend fun insertRecipes(recipesEntity: RecipesEntity){
@@ -37,31 +37,27 @@ class LocalDataSource @Inject constructor(
     }
 
     suspend fun insertFavoriteRecipe(favoritesEntity: FavoritesEntity) {
-        recipesDao.insertFavoriteRecipe(favoritesEntity)
+        favoritesDao.insertFavoriteRecipe(favoritesEntity)
     }
 
     suspend fun insertFavoritesGroup(favoritesGroupsEntity: FavoritesGroupsEntity){
-        recipesDao.insertFavoritesGroup(favoritesGroupsEntity)
+        favoritesDao.insertFavoritesGroup(favoritesGroupsEntity)
     }
 
     suspend fun insertRecipeToCalendar(calendarEntity: CalendarEntity){
-        recipesDao.insertRecipeToCalendar(calendarEntity)
+        calendarDao.insertRecipeToCalendar(calendarEntity)
     }
 
     suspend fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) {
-        recipesDao.deleteFavoriteRecipe(favoritesEntity)
+        favoritesDao.deleteFavoriteRecipe(favoritesEntity)
     }
 
     suspend fun deleteFavoritesGroup(favoritesGroupId: Int){
-        recipesDao.deleteFavoriteRecipesByGroupId(favoritesGroupId)
-        recipesDao.deleteFavoritesGroup(favoritesGroupId)
+        favoritesDao.deleteFavoriteRecipesByGroupId(favoritesGroupId)
+        favoritesDao.deleteFavoritesGroup(favoritesGroupId)
     }
 
     suspend fun deleteRecipeFromCalendar(calendarEntity: CalendarEntity){
-        recipesDao.deleteRecipeFromCalendar(calendarEntity)
-    }
-
-    suspend fun deleteAllFavoriteRecipes() {
-        recipesDao.deleteAllFavoriteRecipes()
+        calendarDao.deleteRecipeFromCalendar(calendarEntity)
     }
 }

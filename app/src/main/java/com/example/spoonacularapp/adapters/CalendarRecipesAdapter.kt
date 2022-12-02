@@ -170,20 +170,24 @@ class CalendarRecipesAdapter(
 
     override fun onActionItemClicked(actionMode: ActionMode?, menu: MenuItem?): Boolean {
         if (menu?.itemId == R.id.deleteRecipeFromCalendar_menu) {
-            selectedRecipes.forEach {
-                mainViewModel.deleteRecipeFromCalendar(it)
-            }
-
-            selectedRecipes.forEach {
-                previouslyRemovedRecipes.add(it)
-            }
-
-            showSnackBar("${selectedRecipes.size} recipe/s removed")
-            multiSelection = false
-            selectedRecipes.clear()
-            actionMode?.finish()
+            removeSelectedFromCalendar(actionMode)
         }
         return true
+    }
+
+    private fun removeSelectedFromCalendar(actionMode: ActionMode?) {
+        selectedRecipes.forEach {
+            mainViewModel.deleteRecipeFromCalendar(it)
+        }
+        previouslyRemovedRecipes.clear()
+        selectedRecipes.forEach {
+            previouslyRemovedRecipes.add(it)
+        }
+
+        showSnackBar("${selectedRecipes.size} recipe/s removed")
+        multiSelection = false
+        selectedRecipes.clear()
+        actionMode?.finish()
     }
 
     override fun onDestroyActionMode(actionMode: ActionMode?) {

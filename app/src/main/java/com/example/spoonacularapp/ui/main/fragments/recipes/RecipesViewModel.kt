@@ -6,13 +6,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.spoonacularapp.data.DataStoreRepository
-import com.example.spoonacularapp.data.MealAndDietType
+import com.example.spoonacularapp.data.MealDietCuisineType
 import com.example.spoonacularapp.util.Constants.Companion.API_KEY
+import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_CUISINE_TYPE
 import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_DIET_TYPE
 import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_MEAL_TYPE
 import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_RECIPES_NUMBER
 import com.example.spoonacularapp.util.Constants.Companion.QUERY_ADD_RECIPE_INFORMATION
 import com.example.spoonacularapp.util.Constants.Companion.QUERY_API_KEY
+import com.example.spoonacularapp.util.Constants.Companion.QUERY_CUISINE
 import com.example.spoonacularapp.util.Constants.Companion.QUERY_DIET
 import com.example.spoonacularapp.util.Constants.Companion.QUERY_FILL_INGREDIENTS
 import com.example.spoonacularapp.util.Constants.Companion.QUERY_NUMBER
@@ -29,32 +31,36 @@ class RecipesViewModel @Inject constructor(
     private val dataStoreRepository: DataStoreRepository
 ) : AndroidViewModel(application) {
 
-    private lateinit var mealAndDiet: MealAndDietType
+    private lateinit var mealDietCuisine: MealDietCuisineType
 
     var networkStatus = false
     var backOnline = false
 
-    val readMealAndDietType = dataStoreRepository.readMealAndDietType
+    val readMealAndDietType = dataStoreRepository.readTypes
     val readBackOnline = dataStoreRepository.readBackOnline.asLiveData()
 
     fun saveMealAndDietType() =
         viewModelScope.launch(Dispatchers.IO) {
-            if (this@RecipesViewModel::mealAndDiet.isInitialized) {
-                dataStoreRepository.saveMealAndDietType(
-                    mealAndDiet.selectedMealType,
-                    mealAndDiet.selectedMealTypeId,
-                    mealAndDiet.selectedDietType,
-                    mealAndDiet.selectedDietTypeId
+            if (this@RecipesViewModel::mealDietCuisine.isInitialized) {
+                dataStoreRepository.saveTypes(
+                    mealDietCuisine.selectedMealType,
+                    mealDietCuisine.selectedMealTypeId,
+                    mealDietCuisine.selectedDietType,
+                    mealDietCuisine.selectedDietTypeId,
+                    mealDietCuisine.selectedCuisineType,
+                    mealDietCuisine.selectedCuisineTypeId
                 )
             }
         }
 
-    fun saveMealAndDietTypeTemp(mealType: String, mealTypeId: Int, dietType: String, dietTypeId: Int) {
-        mealAndDiet = MealAndDietType(
+    fun saveMealAndDietTypeTemp(mealType: String, mealTypeId: Int, dietType: String, dietTypeId: Int, cuisineType: String, cuisineTypeId: Int) {
+        mealDietCuisine = MealDietCuisineType(
             mealType,
             mealTypeId,
             dietType,
-            dietTypeId
+            dietTypeId,
+            cuisineType,
+            cuisineTypeId
         )
     }
 
@@ -71,12 +77,14 @@ class RecipesViewModel @Inject constructor(
         queries[QUERY_ADD_RECIPE_INFORMATION] = "true"
         queries[QUERY_FILL_INGREDIENTS] = "true"
 
-        if (this@RecipesViewModel::mealAndDiet.isInitialized) {
-            queries[QUERY_TYPE] = mealAndDiet.selectedMealType
-            queries[QUERY_DIET] = mealAndDiet.selectedDietType
+        if (this@RecipesViewModel::mealDietCuisine.isInitialized) {
+            queries[QUERY_TYPE] = mealDietCuisine.selectedMealType
+            queries[QUERY_DIET] = mealDietCuisine.selectedDietType
+            queries[QUERY_CUISINE] = mealDietCuisine.selectedCuisineType
         } else {
             queries[QUERY_TYPE] = DEFAULT_MEAL_TYPE
             queries[QUERY_DIET] = DEFAULT_DIET_TYPE
+            queries[QUERY_CUISINE] = DEFAULT_CUISINE_TYPE
         }
 
         return queries
@@ -96,7 +104,7 @@ class RecipesViewModel @Inject constructor(
         if (!networkStatus) {
             Toast.makeText(getApplication(), "No Internet Connection.", Toast.LENGTH_SHORT).show()
             saveBackOnline(true)
-        } else if (networkStatus) {
+        } else {
             if (backOnline) {
                 Toast.makeText(getApplication(), "We're back online.", Toast.LENGTH_SHORT).show()
                 saveBackOnline(false)

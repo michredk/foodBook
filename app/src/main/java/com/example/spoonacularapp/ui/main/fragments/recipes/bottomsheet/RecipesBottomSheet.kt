@@ -10,6 +10,7 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.example.spoonacularapp.databinding.RecipesBottomSheetBinding
 import com.example.spoonacularapp.ui.main.fragments.recipes.RecipesViewModel
+import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_CUISINE_TYPE
 import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_DIET_TYPE
 import com.example.spoonacularapp.util.Constants.Companion.DEFAULT_MEAL_TYPE
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -25,6 +26,8 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
     private var mealTypeChipId = 0
     private var dietTypeChip = DEFAULT_DIET_TYPE
     private var dietTypeChipId = 0
+    private var cuisineTypeChip = DEFAULT_CUISINE_TYPE
+    private var cuisineTypeChipId = 0
 
     lateinit var binding: RecipesBottomSheetBinding
 
@@ -44,8 +47,10 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
         recipesViewModel.readMealAndDietType.asLiveData().observe(viewLifecycleOwner) { value ->
             mealTypeChip = value.selectedMealType
             dietTypeChip = value.selectedDietType
+            cuisineTypeChip = value.selectedCuisineType
             updateChip(value.selectedMealTypeId, binding.mealTypeChipGroup)
             updateChip(value.selectedDietTypeId, binding.dietTypeChipGroup)
+            updateChip(value.selectedCuisineTypeId, binding.cuisineTypeChipGroup)
         }
 
         binding.mealTypeChipGroup.setOnCheckedStateChangeListener{ group, selectedChipId ->
@@ -62,12 +67,21 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
             dietTypeChipId = selectedChipId[0]
         }
 
+        binding.cuisineTypeChipGroup.setOnCheckedStateChangeListener{ group, selectedChipId ->
+            val chip = group.findViewById<Chip>(selectedChipId[0])
+            val selectedCuisineType = chip.text.toString().lowercase(Locale.getDefault())
+            cuisineTypeChip = selectedCuisineType
+            cuisineTypeChipId = selectedChipId[0]
+        }
+
         binding.applyBtn.setOnClickListener{
             recipesViewModel.saveMealAndDietTypeTemp(
                 mealTypeChip,
                 mealTypeChipId,
                 dietTypeChip,
-                dietTypeChipId
+                dietTypeChipId,
+                cuisineTypeChip,
+                cuisineTypeChipId
             )
                 val action = RecipesBottomSheetDirections
                     .actionRecipesBottomSheetToRecipesFragment(true)

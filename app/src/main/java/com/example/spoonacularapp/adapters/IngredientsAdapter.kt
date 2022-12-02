@@ -11,7 +11,7 @@ import com.example.spoonacularapp.model.ExtendedIngredient
 import com.example.spoonacularapp.util.Constants.Companion.BASE_IMAGE_URL
 import com.example.spoonacularapp.util.RecipesDiffUtil
 
-class IngredientsAdapter() : RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>() {
+class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>() {
 
     private var ingredientsList = emptyList<ExtendedIngredient>()
 

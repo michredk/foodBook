@@ -23,7 +23,7 @@ class FavoriteRecipesFragment : Fragment() {
     lateinit var binding: FragmentFavoriteRecipesBinding
     private val mainViewModel: MainViewModel by viewModels()
     private val mAdapter: FavoriteRecipesAdapter by lazy {
-        FavoriteRecipesAdapter(requireActivity(), mainViewModel, arguments?.getInt("color")!!)
+        FavoriteRecipesAdapter(requireActivity(), mainViewModel, arguments?.getInt("color")!!, binding.noDataTextView, binding.noDataImageView)
     }
 
     override fun onCreateView(
@@ -33,13 +33,21 @@ class FavoriteRecipesFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentFavoriteRecipesBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = this
-        binding.mainViewModel = mainViewModel
-        binding.mAdapter = mAdapter
-        binding.groupId = arguments?.getInt("groupId")!!
-
         setupRecyclerView(binding.favoriteRecipesRecyclerView)
+        observeFavoriteRecipes()
 
         return binding.root
+    }
+
+    private fun observeFavoriteRecipes() {
+        mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) { recipes ->
+            val filtered = recipes.filter { it.groupId == arguments?.getInt("groupId")!! }
+            if (filtered.isEmpty()) {
+                binding.noDataImageView.visibility = View.VISIBLE
+                binding.noDataTextView.visibility = View.VISIBLE
+            }
+            mAdapter.setData(filtered)
+        }
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
@@ -71,18 +79,22 @@ class FavoriteRecipesFragment : Fragment() {
         AlertDialog.Builder(requireContext())
             .setTitle(R.string.remove_group_alert_title)
             .setPositiveButton(R.string.yes) { _, _ ->
-                mainViewModel.deleteFavoritesGroup(binding.groupId!!)
-                findNavController().navigateUp()
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.favorites_group_deleted),
-                    Toast.LENGTH_SHORT
-                ).show()
+                removeGroup()
             }
             .setNegativeButton(R.string.cancel) { _, _ ->
-
+                // nothing happens
             }.show()
         return false
+    }
+
+    private fun removeGroup() {
+        mainViewModel.deleteFavoritesGroup(arguments?.getInt("groupId")!!)
+        findNavController().navigateUp()
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.favorites_group_deleted),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onDestroy() {

@@ -1,4 +1,4 @@
-package com.example.spoonacularapp.bindingadapters;
+package com.example.spoonacularapp.bindingadapters
 
 import android.view.View
 import androidx.core.view.isInvisible

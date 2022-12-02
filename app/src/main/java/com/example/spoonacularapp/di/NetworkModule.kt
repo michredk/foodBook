@@ -1,6 +1,6 @@
 package com.example.spoonacularapp.di
 
-import com.example.spoonacularapp.data.network.FoodRecipesApi
+import com.example.spoonacularapp.data.network.RecipesApi
 import com.example.spoonacularapp.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -46,7 +46,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
-        return retrofit.create(FoodRecipesApi::class.java)
+    fun provideApiService(retrofit: Retrofit): RecipesApi {
+        return retrofit.create(RecipesApi::class.java)
     }
 }

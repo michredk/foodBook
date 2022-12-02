@@ -2,6 +2,8 @@ package com.example.spoonacularapp.adapters
 
 import android.os.Build
 import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -20,7 +22,9 @@ import com.google.android.material.snackbar.Snackbar
 class FavoriteRecipesAdapter(
     private val requireActivity: FragmentActivity,
     private val mainViewModel: MainViewModel,
-    private val groupColor: Int
+    private val groupColor: Int,
+    private val noDataTextView: TextView,
+    private val noDataImageView: ImageView
 ) : RecyclerView.Adapter<FavoriteRecipesAdapter.MyViewHolder>(),
     ActionMode.Callback {
 
@@ -170,20 +174,24 @@ class FavoriteRecipesAdapter(
 
     override fun onActionItemClicked(actionMode: ActionMode?, menu: MenuItem?): Boolean {
         if (menu?.itemId == R.id.deleteFavoriteRecipe_menu) {
-            selectedRecipes.forEach {
-                mainViewModel.deleteFavoriteRecipe(it)
-            }
-
-            selectedRecipes.forEach {
-                previouslyRemovedRecipes.add(it)
-            }
-
-            showSnackBar("${selectedRecipes.size} recipe/s removed")
-            multiSelection = false
-            selectedRecipes.clear()
-            actionMode?.finish()
+            deleteSelectedRecipes(actionMode)
         }
         return true
+    }
+
+    private fun deleteSelectedRecipes(actionMode: ActionMode?) {
+        selectedRecipes.forEach {
+            mainViewModel.deleteFavoriteRecipe(it)
+        }
+        previouslyRemovedRecipes.clear()
+        selectedRecipes.forEach {
+            previouslyRemovedRecipes.add(it)
+        }
+
+        showSnackBar("${selectedRecipes.size} recipe/s removed")
+        multiSelection = false
+        selectedRecipes.clear()
+        actionMode?.finish()
     }
 
     override fun onDestroyActionMode(actionMode: ActionMode?) {
@@ -209,7 +217,15 @@ class FavoriteRecipesAdapter(
                 mainViewModel.insertFavoriteRecipe(it)
             }
             previouslyRemovedRecipes.clear()
+            if(noDataTextView.visibility == View.VISIBLE){
+                changeViewsVisibility()
+            }
         }.show()
+    }
+
+    private fun changeViewsVisibility() {
+        noDataTextView.visibility = View.INVISIBLE
+        noDataImageView.visibility = View.INVISIBLE
     }
 
     fun clearContextualActionMode() {

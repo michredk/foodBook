@@ -9,10 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.spoonacularapp.R
 import com.example.spoonacularapp.adapters.FavoritesGroupsAdapter
 import com.example.spoonacularapp.databinding.FragmentFavouritesGroupsBinding
 import com.example.spoonacularapp.ui.main.MainViewModel
+import com.example.spoonacularapp.util.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,15 +34,19 @@ class FavoritesGroupsFragment : Fragment() {
         setupRecyclerView(binding.favoriteGroupsRecyclerView)
 
         binding.addGroupFab.setOnClickListener {
-            findNavController().navigate(R.id.action_favoritesGroupsFragment_to_favoritesGroupsBottomSheet)
+            findNavController().safeNavigate(FavoritesGroupsFragmentDirections.actionFavoritesGroupsFragmentToFavoritesGroupsBottomSheet())
         }
 
+        observeFavoritesGroups()
+
+        return binding.root
+    }
+
+    private fun observeFavoritesGroups() {
         mainViewModel.readFavoritesGroups.observe(viewLifecycleOwner) { groupEntity ->
             mAdapter.setData(groupEntity)
             binding.itemCount = mAdapter.itemCount
         }
-
-        return binding.root
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
