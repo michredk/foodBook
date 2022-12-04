@@ -6,7 +6,7 @@
 
         <variable
             name="calendarEntity"
-            type="com.example.spoonacularapp.data.database.entities.CalendarEntity" />
+            type="com.example.foodfoodapp.data.database.entities.CalendarEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

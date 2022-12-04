@@ -6,7 +6,7 @@
     <data>
         <variable
             name="group"
-            type="com.example.spoonacularapp.data.database.entities.FavoritesGroupsEntity" />
+            type="com.example.foodfoodapp.data.database.entities.FavoritesGroupsEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

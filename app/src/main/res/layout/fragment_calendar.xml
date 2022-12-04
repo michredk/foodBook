@@ -6,11 +6,11 @@
     <data>
         <variable
             name="mAdapter"
-            type="com.example.spoonacularapp.adapters.CalendarRecipesAdapter" />
+            type="com.example.foodfoodapp.adapters.CalendarRecipesAdapter" />
 
         <variable
             name="mainViewModel"
-            type="com.example.spoonacularapp.ui.main.MainViewModel" />
+            type="com.example.foodfoodapp.ui.main.MainViewModel" />
 
         <variable
             name="date"

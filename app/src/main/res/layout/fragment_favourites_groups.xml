@@ -7,7 +7,7 @@
 
         <variable
             name="mainViewModel"
-            type="com.example.spoonacularapp.ui.main.MainViewModel" />
+            type="com.example.foodfoodapp.ui.main.MainViewModel" />
 
         <variable
             name="itemCount"

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.spoonacularapp">
+    package="com.example.foodfoodapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.example.foodfoodapp.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="true"
@@ -19,14 +19,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name="com.example.spoonacularapp.ui.details.DetailsActivity"
+            android:name="com.example.foodfoodapp.ui.details.DetailsActivity"
             android:theme="@style/DetailsActivityTheme"
             android:label="Details"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.example.spoonacularapp.ui.main.MainActivity"
+            android:name="com.example.foodfoodapp.ui.main.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">

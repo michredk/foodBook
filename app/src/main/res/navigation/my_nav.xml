@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.example.spoonacularapp.ui.main.fragments.recipes.RecipesFragment"
+        android:name="com.example.foodfoodapp.ui.main.fragments.recipes.RecipesFragment"
         android:label="@string/recipes_fragment_title"
         tools:layout="@layout/fragment_recipes" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/favouriteRecipesFragment"
-        android:name="com.example.spoonacularapp.ui.main.fragments.favorites.FavoriteRecipesFragment"
+        android:name="com.example.foodfoodapp.ui.main.fragments.favorites.FavoriteRecipesFragment"
         android:label="@string/favorite_recipes_fragment_title"
         tools:layout="@layout/fragment_favorite_recipes" >
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.example.spoonacularapp.ui.main.fragments.calendar.CalendarFragment"
+        android:name="com.example.foodfoodapp.ui.main.fragments.calendar.CalendarFragment"
         android:label="Calendar"
         tools:layout="@layout/fragment_calendar" >
         <action
@@ -47,7 +47,7 @@
     </fragment>
     <dialog
         android:id="@+id/recipesBottomSheet"
-        android:name="com.example.spoonacularapp.ui.main.fragments.recipes.bottomsheet.RecipesBottomSheet"
+        android:name="com.example.foodfoodapp.ui.main.fragments.recipes.bottomsheet.RecipesBottomSheet"
         android:label="recipes_bottom_sheet"
         tools:layout="@layout/recipes_bottom_sheet" >
         <action
@@ -58,16 +58,16 @@
     </dialog>
     <activity
         android:id="@+id/detailsActivity"
-        android:name="com.example.spoonacularapp.ui.details.DetailsActivity"
+        android:name="com.example.foodfoodapp.ui.details.DetailsActivity"
         android:label="Details"
         tools:layout="@layout/activity_details" >
         <argument
             android:name="result"
-            app:argType="com.example.spoonacularapp.model.Result" />
+            app:argType="com.example.foodfoodapp.model.Result" />
     </activity>
     <dialog
         android:id="@+id/favoritesGroupsBottomSheet"
-        android:name="com.example.spoonacularapp.ui.main.fragments.favorites.bottomsheet.FavoritesGroupsBottomSheet"
+        android:name="com.example.foodfoodapp.ui.main.fragments.favorites.bottomsheet.FavoritesGroupsBottomSheet"
         android:label="FavoritesGroupsBottomSheet"
         tools:layout="@layout/favorites_bottom_sheet" >
         <action
@@ -78,7 +78,7 @@
     </dialog>
     <fragment
         android:id="@+id/favoritesGroupsFragment"
-        android:name="com.example.spoonacularapp.ui.main.fragments.favorites.FavoritesGroupsFragment"
+        android:name="com.example.foodfoodapp.ui.main.fragments.favorites.FavoritesGroupsFragment"
         android:label="Favorites Groups" >
         <action
             android:id="@+id/action_favoritesGroupsFragment_to_favoritesGroupsBottomSheet"
