@@ -100,6 +100,16 @@ class RecipesViewModel @Inject constructor(
         return queries
     }
 
+    fun applyScannedSearchQuery(selectedResults: Array<String>): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
+        queries[QUERY_SEARCH] = selectedResults.joinToString(", ")
+        queries[QUERY_NUMBER] = DEFAULT_RECIPES_NUMBER
+        queries[QUERY_API_KEY] = API_KEY
+        queries[QUERY_ADD_RECIPE_INFORMATION] = "true"
+        queries[QUERY_FILL_INGREDIENTS] = "true"
+        return queries
+    }
+
     fun showNetworkStatus() {
         if (!networkStatus) {
             Toast.makeText(getApplication(), "No Internet Connection.", Toast.LENGTH_SHORT).show()

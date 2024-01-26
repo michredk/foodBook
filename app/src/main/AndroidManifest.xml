@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.foodfoodapp">
 
+    <!-- Declare features -->
+    <uses-feature android:name="android.hardware.camera" />
+
+    <!-- Declare permissions -->
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -22,6 +27,13 @@
             android:name="com.example.foodfoodapp.ui.details.DetailsActivity"
             android:theme="@style/DetailsActivityTheme"
             android:label="Details"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.example.foodfoodapp.ui.scanner.ScannerActivity"
+            android:theme="@style/ScannerActivityTheme"
+            android:label="Scanner"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity" />

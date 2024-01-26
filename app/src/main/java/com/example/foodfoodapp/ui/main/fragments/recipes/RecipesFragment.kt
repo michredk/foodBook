@@ -2,7 +2,12 @@ package com.example.foodfoodapp.ui.main.fragments.recipes
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
@@ -62,16 +67,23 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
             recipesViewModel.backOnline = it
         }
 
-        lifecycleScope.launch{
-            networkListener = NetworkListener()
-            networkListener.checkNetwork(requireContext())
-                .collect { status ->
-                    Log.d("NetworkListener", status.toString())
-                    recipesViewModel.networkStatus = status
-                    recipesViewModel.showNetworkStatus()
-                    readDatabase()
-                }
+        // if user navigated from scanner, else check for network and load data
+        if(!args.selectedResults.isNullOrEmpty()) {
+            val selectedResults = args.selectedResults!!
+            Log.d("Scanning", "got my args in RECIPES FRAGMENT: $selectedResults")
+            searchApiDataAfterScanning(selectedResults)
+        } else {
+            lifecycleScope.launch{
+                networkListener = NetworkListener()
+                networkListener.checkNetwork(requireContext())
+                    .collect { status ->
+                        Log.d("NetworkListener", status.toString())
+                        recipesViewModel.networkStatus = status
+                        recipesViewModel.showNetworkStatus()
+                        readDatabase()
+                    }
             }
+        }
 
         binding.recipesFab.setOnClickListener{
             if(recipesViewModel.networkStatus){
@@ -79,6 +91,10 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
             } else {
                 recipesViewModel.showNetworkStatus()
             }
+        }
+
+        binding.scannerFab.setOnClickListener{
+            findNavController().safeNavigate(RecipesFragmentDirections.actionRecipesToScannerActivity())
         }
 
         return binding.root
@@ -104,7 +120,6 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
     }
 
     private fun requestApiData() {
-        Log.d("RecipesFragment", "requestApiData called!")
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner) { response ->
             handleApiDataResponse(response)
@@ -117,7 +132,14 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
         mainViewModel.searchedRecipesResponse.observe(viewLifecycleOwner) { response ->
             handleApiDataResponse(response)
         }
+    }
 
+    private fun searchApiDataAfterScanning(scannedResults: Array<String>){
+        showShimmerEffect()
+        mainViewModel.searchRecipes(recipesViewModel.applyScannedSearchQuery(scannedResults))
+        mainViewModel.searchedRecipesResponse.observe(viewLifecycleOwner) { response ->
+            handleApiDataResponse(response)
+        }
     }
 
     private fun handleApiDataResponse(response: NetworkResult<FoodRecipe>) {

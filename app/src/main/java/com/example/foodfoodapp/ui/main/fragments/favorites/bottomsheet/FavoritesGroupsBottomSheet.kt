@@ -40,7 +40,13 @@ class FavoritesGroupsBottomSheet : BottomSheetDialogFragment() {
         binding = FavoritesBottomSheetBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = this
 
-        binding.groupNameEditText.addTextChangedListener(textWatcher)
+        binding.groupNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                binding.addBtn.isEnabled = (s.toString().trim().length > 1)
+            }
+        })
 
         binding.colorChipGroup.setOnCheckedStateChangeListener { _, selectedChipId ->
             selectedChip = selectedChipId[0]
@@ -78,13 +84,5 @@ class FavoritesGroupsBottomSheet : BottomSheetDialogFragment() {
         if (selectedChip == binding.marineChip.id) return R.color.marine
         return if (selectedChip == binding.blueChip.id) R.color.blue
         else R.color.colorPrimary
-    }
-
-    private var textWatcher: TextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-        override fun afterTextChanged(s: Editable) {
-            binding.addBtn.isEnabled = (s.toString().trim().length > 1)
-        }
     }
 }

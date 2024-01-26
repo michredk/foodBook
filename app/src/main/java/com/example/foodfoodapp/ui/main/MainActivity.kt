@@ -1,6 +1,7 @@
 package com.example.foodfoodapp.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -45,6 +46,15 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        // Check if the argument is present
+        if (intent.hasExtra("selectedResults")) {
+            val selectedResults = intent.getStringArrayExtra("selectedResults")
+            Log.d("Scanning", "got my args in MAIN ACTIVITY: selectedResults null or empty = ${selectedResults.isNullOrEmpty()}")
+            val bundle = Bundle().apply {
+                putStringArray("selectedResults", selectedResults)
+            }
+            navController.navigate(R.id.recipesFragment, bundle)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

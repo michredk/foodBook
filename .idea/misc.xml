@@ -1,9 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/gradient_overlay.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.2675" />
+        <entry key="app/src/main/res/drawable/ic_add_group.xml" value="0.2675" />
+        <entry key="app/src/main/res/drawable/ic_checkmark.xml" value="0.2675" />
+        <entry key="app/src/main/res/drawable/ic_dollar.xml" value="0.256" />
+        <entry key="app/src/main/res/drawable/ic_group_remove.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/ic_menu_book.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_searc.xml" value="0.2615" />
+        <entry key="app/src/main/res/drawable/ic_shopping_list.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/calendar_bottom_sheet.xml" value="0.30092592592592593" />
+        <entry key="app/src/main/res/layout/calendar_recipe_row_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/favorite_recipe_row_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/favorites_bottom_sheet.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/favorites_dialog.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_browsing_history.xml" value="0.34717948717948716" />
+        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_favorite_recipes.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_favorites_bottom_sheet.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_favourite_groups.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_favourite_recipes.xml" value="0.34717948717948716" />
+        <entry key="app/src/main/res/layout/fragment_favourites_groups.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_ingredients.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_instructions.xml" value="0.33697916666666666" />
+        <entry key="app/src/main/res/layout/fragment_overview.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_recipes.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/group_row_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/ingredients_row_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/placeholder_row_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/recipes_bottom_sheet.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/recipes_row_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/calendar_contextual_menu.xml" value="0.1590909090909091" />
+        <entry key="app/src/main/res/menu/details_menu.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/menu/favorites_contextual_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/group_menu.xml" value="0.28888888888888886" />
+        <entry key="app/src/main/res/menu/recipes_menu.xml" value="0.3515625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1675" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

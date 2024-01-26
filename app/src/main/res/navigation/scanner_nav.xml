@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scanner_nav"
+    app:startDestination="@id/permissionsFragment">
+
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="com.example.foodfoodapp.ui.scanner.fragments.PermissionsFragment"
+        android:label="PermissionsFragment" >
+        <action
+            android:id="@+id/action_permissions_to_scanner"
+            app:destination="@id/scannerFragment"
+            app:popUpTo="@+id/permissionsFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/scannerFragment"
+        android:name="com.example.foodfoodapp.ui.scanner.fragments.ScannerFragment"
+        android:label="ScannerFragment" >
+        <action
+            android:id="@+id/action_scannerFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.foodfoodapp.ui.main.MainActivity"
+        android:label="MainActivity">
+        <argument
+            android:name="selectedResults"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </activity>
+</navigation>

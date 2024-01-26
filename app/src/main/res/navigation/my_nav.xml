@@ -10,16 +10,27 @@
         android:name="com.example.foodfoodapp.ui.main.fragments.recipes.RecipesFragment"
         android:label="@string/recipes_fragment_title"
         tools:layout="@layout/fragment_recipes" >
-        <action
-            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
-            app:destination="@id/recipesBottomSheet" />
+        <deepLink
+            app:uri="recipesFragmentDeepLink/{selectedResults}"
+            app:action="android.intent.action.VIEW" />
         <argument
             android:name="backFromBottomSheet"
             app:argType="boolean"
             android:defaultValue="false" />
+        <argument
+            android:name="selectedResults"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+        <action
+            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
+            app:destination="@id/recipesBottomSheet" />
         <action
             android:id="@+id/action_recipesFragment_to_detailsActivity"
             app:destination="@id/detailsActivity" />
+        <action
+            android:id="@+id/action_recipes_to_scannerActivity"
+            app:destination="@id/scannerActivity" />
     </fragment>
     <fragment
         android:id="@+id/favouriteRecipesFragment"
@@ -87,4 +98,8 @@
             android:id="@+id/action_favoritesGroupsFragment_to_favouriteRecipesFragment"
             app:destination="@id/favouriteRecipesFragment" />
     </fragment>
+    <activity
+        android:id="@+id/scannerActivity"
+        android:name="com.example.foodfoodapp.ui.scanner.ScannerActivity"
+        android:label="ScannerActivity" />
 </navigation>

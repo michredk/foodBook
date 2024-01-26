@@ -16,7 +16,7 @@ import com.example.foodfoodapp.util.Constants.Companion.DEFAULT_MEAL_TYPE
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import java.util.*
+import java.util.Locale
 
 class RecipesBottomSheet : BottomSheetDialogFragment() {
 

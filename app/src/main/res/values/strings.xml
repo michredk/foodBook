@@ -39,7 +39,7 @@
     <string name="dairy_free">Dairy Free</string>
     <string name="healthy">Healthy</string>
     <string name="cheap">Cheap</string>
-    <string name="lorem_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet nunc at velit lobortis malesuada. Pellentesque porta dictum lectus, a varius erat. Donec a eros in sapien porttitor volutpat. Duis elementum bibendum nisl, id posuere odio vestibulum id. Morbi dignissim ac augue non egestas. Etiam dapibus eros urna, non tristique ante faucibus ut. Proin quis nisl orci. Donec at viverra magna. Nunc et tellus posuere, convallis dolor in, euismod erat. Etiam condimentum elit lacinia lacinia posuere. Donec at suscipit arcu. Nunc ac bibendum nunc. Nullam egestas metus eu orci cursus egestas. Praesent sit amet ultricies tortor, sit amet vulputate justo. Curabitur nec nisl et turpis consectetur faucibus vitae ac dolor.</string>
+    <string name="lorem_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet nunc at velit lobortis malesuada. Pellentesque porta dictum lectus, a varius erat. Donec a eros in sapien porttitor volutpat. Duis elementum bibendum nisl, id posuere odio vestibulum id. Morbi dignissim ac augue non egestas. Etiam dapibus eros urna, non tristique ante faucibus ut. Proin quis nisl orci. Donec at viverra magna. Nunc et tellus posuere, convallis dolor in, euismod erat. Etiam condimentum elit lacinia posuere. Donec at suscipit arcu. Nunc ac bibendum nunc. Nullam egestas metus eu orci cursus egestas. Praesent sit amet ultricies tortor, sit amet vulputate justo. Curabitur nec nisl et turpis consectetur faucibus vitae ac dolor.</string>
     <string name="favorites_bottom_sheet_title">Add a new group of favorite foods:</string>
     <string name="add_group_edit_text_hint">Name</string>
     <string name="add">Add</string>
@@ -98,4 +98,9 @@
     <string name="latin_american">Latin American</string>
     <string name="mediterranean">Mediterranean</string>
     <string name="none">None</string>
+    <string name="search_btn_text">Search</string>
+    <string name="proceed_to_food_scanner_button">Proceed to food scanner button</string>
+    <string name="open_bottomsheet_with_filters_options">Open bottomsheet with filters options</string>
+    <string name="auto_accept">Auto accept</string>
+    <string name="accept_result_btn">Accept result</string>
 </resources>
