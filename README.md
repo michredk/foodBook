@@ -1,4 +1,4 @@
-# FoodfoodApp
+# foodBook
 A recipe app that uses the Spoonacular API.  
 
 Recipes fragment:  
@@ -16,7 +16,7 @@ Favorites fragment:
 <img src="screenshots/8.jpg" width="320">
 <img src="screenshots/9.jpg" width="320">  
 
-Calendar fragment and copied to notepad application generated shopping list:  
+Calendar fragment and copied to notepad generated shopping list:  
 <img src="screenshots/10.jpg" width="320">
 <img src="screenshots/12.jpg" width="320">
 <img src="screenshots/13.jpg" width="320">
