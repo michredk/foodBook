@@ -6,6 +6,9 @@ Recipes fragment:
 <img src="screenshots/2.jpg" width="320">
 <img src="screenshots/3.jpg" width="320">
 
+Product scanner:  
+<img src="screenshots/1_1.jpg" width="320">
+
 Details activity:  
 <img src="screenshots/4.jpg" width="320">
 <img src="screenshots/5.jpg" width="320">
