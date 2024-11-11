@@ -1,5 +1,6 @@
 # foodBook
 A recipe app that uses the Spoonacular API.
+Based and further expanded on https://github.com/stevdza-san/Foody
 
 Recipes fragment:  
 <img src="screenshots/new1.jpg" width="270">
