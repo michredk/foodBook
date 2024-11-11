@@ -3,7 +3,6 @@ A recipe app that uses the Spoonacular API.
 
 Recipes fragment:  
 <img src="screenshots/new1.jpg" width="270">
-<img src="screenshots/new2.jpg" width="270">
 <img src="screenshots/new3.jpg" width="270">
 
 Product scanner:  
