@@ -15,7 +15,7 @@ Details activity:
 <img src="screenshots/new6.jpg" width="270">
 
 Favorites fragment:  
-<img src="screenshots/new7.jpg" width="270">
+<img src="screenshots/new7.png" width="270">
 <img src="screenshots/new8.jpg" width="270">
 <img src="screenshots/new9.jpg" width="270">
 
