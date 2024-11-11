@@ -175,11 +175,11 @@ class RecipesFragment : Fragment(), MenuProvider, SearchView.OnQueryTextListener
     }
 
     private fun showShimmerEffect() {
-        binding.recyclerView.showShimmer()
+//        binding.recyclerView.showShimmer()
     }
 
     private fun hideShimmerEffect() {
-        binding.recyclerView.hideShimmer()
+//        binding.recyclerView.hideShimmer()
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

@@ -36,12 +36,12 @@ class OverviewFragment : Fragment() {
         binding.timeTextView.text = myBundle.readyInMinutes.toString()
         RecipesRowBinding.parseHtml(binding.descriptionTextView, myBundle.summary)
 
-        updateColors(myBundle.vegetarian, binding.vegetarianTextView, binding.vegetarianImageView, R.color.green)
-        updateColors(myBundle.vegan, binding.veganTextView, binding.veganImageView, R.color.green)
-        updateColors(myBundle.glutenFree, binding.glutenFreeTextView, binding.glutenFreeImageView, R.color.green)
-        updateColors(myBundle.dairyFree, binding.dairyFreeTextView, binding.dairyFreeImageView, R.color.green)
-        updateColors(myBundle.veryHealthy, binding.healthyTextView, binding.healthyImageView, R.color.red)
-        updateColors(myBundle.cheap, binding.cheapTextView, binding.cheapImageView, R.color.yellow)
+        updateColors(myBundle.vegetarian, binding.vegetarian1TextView, binding.vegetarian1ImageView, R.color.green)
+//        updateColors(myBundle.vegan, binding.vegan1TextView, binding.vegan1ImageView, R.color.green)
+        updateColors(myBundle.glutenFree, binding.glutenFree1TextView, binding.glutenFree1ImageView, R.color.green)
+        updateColors(myBundle.dairyFree, binding.dairyFree1TextView, binding.dairyFree1ImageView, R.color.green)
+        updateColors(myBundle.veryHealthy, binding.healthy1TextView, binding.healthy1ImageView, R.color.red)
+//        updateColors(myBundle.cheap, binding.cheap1TextView, binding.cheap1ImageView, R.color.yellow)
 
         return binding.root
     }
